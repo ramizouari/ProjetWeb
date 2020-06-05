@@ -1,0 +1,19 @@
+- les fonctionnalités de site : 
+   
+    1/ permet de faire echange des livres entre les utilisateurs  
+    
+    2/ chaque utilisateur possede un compte qui contient une liste des livres à echange
+     
+    3/ chaque compte possede un fil d'acceuil (ou se trouve des publications des autres utilisateurs ) 
+    
+    4/ chaque livre possede une desciprtion et des personnes disponible pour faire un echange ... vote( note d'apreciation )avec des autres suggestions donnés par le site  exemple page egybest
+
+    5/ chaque utilisateur peut faire un recherche par des mots clé (livre/auteur/categor...) 
+    
+    6/ chaque auteur a une page qui contient une  description .... 
+    
+    7/ lors de creation du compte lutilisateur peut choisir les categories preferer
+       lauteur ...
+    
+ 
+          
