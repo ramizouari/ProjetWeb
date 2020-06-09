@@ -1,0 +1,66 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LivreController!{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+    <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
+
+    <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/style.css") }}">
+
+    <link rel="stylesheet" href="{{ asset('../templates/livre/livre_style.css') }}">
+
+{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+
+    <div >
+    <img  id="b"  class="rounded img-responsive float-left img-thumbnail a "
+         src="{{ extract(img) }}"
+         alt=" image missing">
+    <table  id="tab" class=" table-bordered border-danger a ">
+
+        <tr size="20px">
+            <th> name : </th>
+            <td> {{ name|title }}</td>
+        </tr>
+        <tr>
+            <th> description :</th>
+            <td> {{ desciption }}</td>
+        </tr>
+        <tr>
+            <th>auteur</th>
+            <td> {{ auteur}} </td>
+        </tr>
+        <tr>
+            <th>categorie </th>
+            <td> {{ categorie}} </td>
+        </tr>
+        <tr>
+            <th>nombre des echanges</th>
+            <td> {{ nb_ech}} </td>
+        </tr>
+        <tr>
+            <th>nombre des pages </th>
+            <td> {{ nb_pages}} </td>
+        </tr>
+        <tr>
+            <th>Evaluation</th>
+            <td> {{ evaluation}} </td>
+        </tr>
+
+    </table>
+    </div>
+
+    <div class="liste_possesseurs float-left">
+
+    {{ render(controller('App\\Controller\\LivreController::lister')) }}
+
+
+    </div>
+
+{% endblock %}

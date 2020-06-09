@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="{{ asset('../templates/livre/livre_style.css') }}">
+</head>
+<body>
+
+
+<table id="a" width="800px" class="table-bordered ">
+    <thead>
+    <tr> <th colspan="4" align="left" height="50"> liste des possessers </th></tr>
+    <tr>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>rate</th>
+        <th>adresse</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ firstname }}</td>
+        <td>{{ secondname }} <i class="i-pc"></i></td>
+        <td>{{ rate }}</td>
+        <td class="tar"><a class="nop btn g dl _open_window"
+                           data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5"><i
+                        class="i-dl"></i> demander echange</a>
+            <a class="nop btn b dl _open_window"
+               data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5&amp;v=1"><i
+                        class="i-playc"></i> voir profile</a>
+        </td>
+    </tr>
+
+    </tbody>
+    <tfoot>
+
+    <tr align="center">
+        <td colspan="4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </td>
+    </tr>
+
+    </tfoot>
+
+</table>
+<table   class="table-bordered float-left">
+    <thead>
+    <tr> <th colspan="4" align="left" height="50"> liste d'attente </th></tr>
+    <tr>
+        <th>nom</th>
+        <th>prenom</th>
+        <th>rate</th>
+        <th>adresse</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td>{{ firstname }}</td>
+        <td>{{ secondname }} <i class="i-pc"></i></td>
+        <td>{{ rate }}</td>
+        <td class="tar"><a class="nop btn g dl _open_window"
+                           data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5"><i
+                        class="i-dl"></i> demander echange</a>
+            <a class="nop btn b dl _open_window"
+               data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5&amp;v=1"><i
+                        class="i-playc"></i> voir profile</a>
+        </td>
+    </tr>
+
+    </tbody>
+    <tfoot>
+
+    <tr align="center">
+        <td colspan="4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </td>
+    </tr>
+
+    </tfoot>
+
+</table>
+
+<p class="me"> souheil ben slama</p>
+
+</body>
+</html>
