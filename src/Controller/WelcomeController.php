@@ -7,7 +7,9 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use App\Form\SignUpType;
 use App\Form\SignInType;
+use App\Entity\UserBook;
 use App\Entity\User;
+use App\Entity\Book;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Session\SessionInterface;
 use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
@@ -201,4 +203,22 @@ class WelcomeController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
+    /**
+     * @Route("/mybooks", name="user_books")
+     */
+    public function mybooks()
+    {
+        if (!$this->getUser()) {
+            return $this->redirectToRoute('welcome');
+        }
+        $userBookRepo = $this->getDoctrine()->getRepository(UserBook::class);
+        $userBooks=$userBookRepo->findBy(["userId"=>$this->getUser()->getId()]);
+        $bookRepo=$this->getDoctrine()->getRepository(Book::class);
+        $books=array();
+        foreach($userBooks as $userBook)
+           { array_push($books,$bookRepo->find($userBook->getBookId()));
+           
+           }
+       return $this->render('user/books.html.twig', ['books' => $books]);    }    
 }
