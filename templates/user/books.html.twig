@@ -1,0 +1,18 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Log in!{% endblock %}
+
+{% block body %}
+<table>
+<tr>
+    <td>Title</td> <td>Author</td> <td>Description</td>
+</tr>
+{% for book in books %}
+<tr>
+    <td>{{book.title}}</td>
+    <td>{{book.author}}</td>
+    <td>{{book.description}}</td>
+</tr>
+{% endfor %}
+</table>
+{% endblock %}
