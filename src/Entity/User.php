@@ -57,7 +57,6 @@ class User implements UserInterface
      * @ORM\ManyToMany(targetEntity=Book::class)
      */
     private $followedBooks;
-
    //     /**
     // * @ORM\Column(type="json")
     // */
