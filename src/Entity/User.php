@@ -58,9 +58,11 @@ class User implements UserInterface
     // * @ORM\Column(type="json")
     // */
     
-  //  private $roles = [];
+    private $roles = [];
 
     private $plainPassword;
+
+    private $rememberSession;
 
     public function getId(): ?int
     {
@@ -246,6 +248,17 @@ class User implements UserInterface
         if ($this->followedBooks->contains($followedBooks)) {
             $this->followedBooks->removeElement($followedBooks);
         }
+
+        return $this;
+    }
+    public function getRememberSession(): ?string
+    {
+        return $this->rememberSession;
+    }
+    
+    public function setRememberSession(string $rememberSession): self
+    {
+        $this->rememberSession = $rememberSession;
 
         return $this;
     }
