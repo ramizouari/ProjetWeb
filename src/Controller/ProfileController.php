@@ -8,10 +8,15 @@ use Symfony\Component\Routing\Annotation\Route;
 class ProfileController extends AbstractController
 {
     /**
-     * @Route("/profile", name="profile")
+     * @Route("/profile/{id}", name="profile")
      */
-    public function index()
+    public function index($id)
     {
-        return $this->render('profile/index.html.twig');
+        $rep=$this->getDoctrine()->getRepository("App:User");
+
+        $user=$rep->find($id);
+
+        return $this->render('profile/index.html.twig',["user"=>$user]);
     }
+
 }

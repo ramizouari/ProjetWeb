@@ -37,6 +37,7 @@ class Book
 
     /**
      * @ORM\ManyToMany(targetEntity=User::class, mappedBy="booksCollection")
+     * * @ORM\JoinTable(name="user_book");
      */
     private $users;
 

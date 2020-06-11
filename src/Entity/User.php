@@ -47,6 +47,7 @@ class User implements UserInterface
 
      /**
      * @ORM\ManyToMany(targetEntity=Book::class, inversedBy="users")
+      * @ORM\JoinTable(name="user_book");
      */
     private $booksCollection;
       /**
@@ -61,6 +62,11 @@ class User implements UserInterface
   //  private $roles = [];
 
     private $plainPassword;
+
+    /**
+     * @ORM\OneToMany(targetEntity=Publication::class, mappedBy="proprietaire")
+     */
+    private $publications;
 
     public function getId(): ?int
     {
@@ -138,6 +144,7 @@ class User implements UserInterface
     public function __construct()
     {
         $this->booksCollection = new ArrayCollection();
+        $this->publications = new ArrayCollection();
     }
 
   
@@ -245,6 +252,37 @@ class User implements UserInterface
     {
         if ($this->followedBooks->contains($followedBooks)) {
             $this->followedBooks->removeElement($followedBooks);
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|Publication[]
+     */
+    public function getPublications(): Collection
+    {
+        return $this->publications;
+    }
+
+    public function addPublication(Publication $publication): self
+    {
+        if (!$this->publications->contains($publication)) {
+            $this->publications[] = $publication;
+            $publication->setProprietaire($this);
+        }
+
+        return $this;
+    }
+
+    public function removePublication(Publication $publication): self
+    {
+        if ($this->publications->contains($publication)) {
+            $this->publications->removeElement($publication);
+            // set the owning side to null (unless already changed)
+            if ($publication->getProprietaire() === $this) {
+                $publication->setProprietaire(null);
+            }
         }
 
         return $this;
