@@ -19,37 +19,37 @@
 
     <div >
     <img  id="b"  class="rounded img-responsive float-left img-thumbnail a "
-         src="{{ extract(img) }}"
+         src="{{ extract(null) }}"
          alt=" image missing">
     <table  id="" class=" table-bordered border-danger a tab ">
 
         <tr size="20px">
             <th> name : </th>
-            <td> {{ name|title }}</td>
+            <td> {{ book.title }}</td>
         </tr>
         <tr>
             <th> description :</th>
-            <td> {{ desciption }}</td>
+            <td> {{ book.description }}</td>
         </tr>
         <tr>
             <th>auteur</th>
-            <td> {{ auteur}} </td>
+            <td> {{ book.author}} </td>
         </tr>
         <tr>
             <th>categorie </th>
-            <td> {{ categorie}} </td>
+            <td> {{ "book.catègorie"}} </td>
         </tr>
         <tr>
             <th>nombre des echanges</th>
-            <td> {{ nb_ech}} </td>
+            <td> {{ "book.nb_ech"}} </td>
         </tr>
         <tr>
             <th>nombre des pages </th>
-            <td> {{ nb_pages}} </td>
+            <td> {{ "book.nb_pages"}} </td>
         </tr>
         <tr>
             <th>Evaluation</th>
-            <td> {{ evaluation}} </td>
+            <td> {{ "book.eval"}} </td>
         </tr>
 
     </table>
@@ -57,7 +57,7 @@
 
     <div class="liste_possesseurs float-left">
 
-    {{ render(controller('App\\Controller\\LivreController::lister')) }}
+    {{ render(controller('App\\Controller\\LivreController::lister', {"book":book } )) }}
 
 
     </div>

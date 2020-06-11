@@ -11,7 +11,9 @@
 
 <table id="" class="table-bordered tab ">
     <thead>
-    <tr> <th colspan="4" align="left" height="50"> liste des possessers </th></tr>
+    <tr>
+        <th colspan="4" align="left" height="50"> liste des possessers</th>
+    </tr>
     <tr>
         <th>nom</th>
         <th>prenom</th>
@@ -21,16 +23,29 @@
     </thead>
     <tbody>
     <tr>
-        <td>{{ firstname }}</td>
-        <td>{{ secondname }} <i class="i-pc"></i></td>
-        <td>{{ rate }}</td>
-        <td class="tar"><a class="nop btn g dl _open_window"
-                           data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5"><i
-                        class="i-dl"></i> demander echange</a>
-            <a class="nop btn b dl _open_window"
-               data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5&amp;v=1"><i
-                        class="i-playc"></i> voir profile</a>
-        </td>
+
+
+        {% if users is not empty %}
+
+            {% for cat in users %}
+
+                <td>{{ cat.getFirstName() }}</td>
+                <td>{{ cat.getLastName() }} <i class="i-pc"></i></td>
+                <td>{{ cat.getEmail() }}</td>
+                <td class="tar"><a class="nop btn g dl _open_window"
+                                   data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5"><i
+                                class="i-dl"></i> demander echange</a>
+                    <a class="nop btn b dl _open_window"
+                       data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5&amp;v=1"><i
+                                class="i-playc"></i> voir profile</a>
+                </td>
+
+            {% endfor %}
+        {% else %}
+            <td>Ce livre n'est rattaché à aucune catégorie.</td>
+        {% endif %}
+
+
     </tr>
 
     </tbody>
@@ -53,9 +68,11 @@
     </tfoot>
 
 </table>
-<table   class="table-bordered  tab">
+<table class="table-bordered  tab">
     <thead>
-    <tr> <th colspan="4" align="left" height="50"> liste d'attente </th></tr>
+    <tr>
+        <th colspan="4" align="left" height="50"> liste d'attente</th>
+    </tr>
     <tr>
         <th>nom</th>
         <th>prenom</th>
@@ -65,9 +82,15 @@
     </thead>
     <tbody>
     <tr>
-        <td>{{ firstname }}</td>
-        <td>{{ secondname }} <i class="i-pc"></i></td>
-        <td>{{ rate }}</td>
+
+
+        {% if followers is not empty %}
+
+        {% for foll in followers %}
+
+        <td>{{ foll.getFirstName() }}</td>
+        <td>{{ foll.getLastName() }} <i class="i-pc"></i></td>
+        <td>{{ foll.getEmail() }}</td>
         <td class="tar"><a class="nop btn g dl _open_window"
                            data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5"><i
                         class="i-dl"></i> demander echange</a>
@@ -75,6 +98,10 @@
                data-url="/api?call=wWWWFfGNlwoEfYFWLUCWLcCFUEAUUFUsFWFiDWFWLWFxUUfClDUAWUlWFLFWFwojWFWLWFUXcFWmkACLWmikFLFWFwoVWFWLWFUCLUWUClLwWFLFWFEhZWFWLWFwUodTYwAEhqVtWFLFWFVoDFWLWFGoDoVoYpqLAWFLFWFWbUWFWLWFOhqwFWqawwFwvnfAWVUoVFRtWFWl&amp;auth=b7ec3344b5c5728a519a3aa8562fe6e5&amp;v=1"><i
                         class="i-playc"></i> voir profile</a>
         </td>
+
+            {% endfor %}
+        {% endif %}
+
     </tr>
 
     </tbody>
@@ -112,15 +139,18 @@
         <!-- Wrapper for slides -->
         <div class="carousel-inner">
             <div class="item active">
-                <img src="https://i2.wp.com/petvetlagos.com/wp-content/uploads/2019/02/Experienced-Pet-Groomer-Carmichael-CA1.jpg?fit=1568%2C727" alt="Los Angeles">
+                <img src="https://i2.wp.com/petvetlagos.com/wp-content/uploads/2019/02/Experienced-Pet-Groomer-Carmichael-CA1.jpg?fit=1568%2C727"
+                     alt="Los Angeles">
             </div>
 
             <div class="item">
-                <img src="https://www.invoxia.com/assets/pages/lwt/media/pet-tracker-cat-dog.jpg?83ad3a3043fa8c8a9a40b58b071f50178384e544" alt="Chicago">
+                <img src="https://www.invoxia.com/assets/pages/lwt/media/pet-tracker-cat-dog.jpg?83ad3a3043fa8c8a9a40b58b071f50178384e544"
+                     alt="Chicago">
             </div>
 
             <div class="item">
-                <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg" alt="New York">
+                <img src="https://post.medicalnewstoday.com/wp-content/uploads/sites/3/2020/02/322868_1100-1100x628.jpg"
+                     alt="New York">
             </div>
         </div>
 
@@ -138,6 +168,10 @@
 
 <!-- testing -->
 
+
+
+
+
 <div>
     <div class="mbox">
         <div class="hd pda bdb"><strong> similaire books </strong> <a
@@ -146,27 +180,54 @@
             <span class="_scroll left i-ar-l"></span> <span class="_scroll right hide i-ar-r"></span>
             <div class="contents movies_small">
 
-                <a href="https://feta.egybest.rocks/movie/bride-of-scarecrow-2018/?ref=home-bluray" class="movie"><span
-                            class="r"><i class="i-fav rating"><i>2.5</i></i></span> <img
-                            src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg"
-                            alt="Bride of Scarecrow EgyBest ايجي بست"> <span
-                            class="title">Bride of Scarecrow (2018)</span> <span
-                            class="ribbon r3"><span>BluRay</span></span> </a>
-
-
-                <a href="https://feta.egybest.rocks/movie/the-glorious-seven-2019/?ref=home-bluray" class="movie"><span
-                            class="r"><i class="i-fav rating"><i>2.6</i></i></span> <img
-                            src="//pic.egybest.net/i/RHNhSUNlY21URXZjbXZ2Y21qdlJjbUhOalB3TGNtcGo.jpg"
-                            alt="The Glorious Seven EgyBest ايجي بست"> <span
-                            class="title">The Glorious Seven (2019)</span> <span
-                            class="ribbon r3"><span>BluRay</span></span> </a>
-
                 <span class="_scroll right i-ar-r"></span>
 
-    </div>
             </div>
-                    </div>
+        </div>
+    </div>
 </div>
+
+
+<div class="card-deck">
+
+
+    <a href="https://feta.egybest.rocks/movie/bride-of-scarecrow-2018/?ref=home-bluray" class="movie">
+    <div style="width: 50%" class="card">
+        <img class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">Bride of Scarecrow (2018)</h5>
+            <p class="card-text">This is a longer card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    </a>
+
+    <a href="https://feta.egybest.rocks/movie/the-glorious-seven-2019/?ref=home-bluray" class="movie">
+    <div class="card">
+        <img class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZajAIQV-BxQDPl5jrf0Ir3wnJ93kf54P1WbtwnnwNCvPgncJu&usqp=CAU" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">The Glorious Seven (2019)</h5>
+            <p class="card-text">This card has supporting text below as a natural lead-in to additional content.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+    </a>
+
+    <a href="https://www.google.com">
+    <div class="card">
+        <img class="card-img-top" src="https://cdn.shopify.com/s/files/1/0176/9202/products/Sea_Salt_e4f97e1e-08df-4a1a-a42e-fc507db766ea_grande.jpg?v=1586440065" alt="Card image cap">
+        <div class="card-body">
+            <h5 class="card-title">the book </h5>
+            <p class="card-text">This is a wider card with supporting text below as a natural lead-in to additional content. This card has even longer content than the first to show that equal height action.</p>
+            <p class="card-text"><small class="text-muted">Last updated 3 mins ago</small></p>
+        </div>
+    </div>
+
+    </a>
+</div>
+
+
+
 
 </body>
 

@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Entity\User;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -11,39 +12,35 @@ use function mysql_xdevapi\getSession;
 class LivreController extends AbstractController
 {
     /**
-     * @Route("/livre", name="livre")
+     * @Route("/livre/{id}", name="livre")
      * @param Request $request
      * @return Response
      */
-    public function index(Request $request ): Response
+    public function index(Request $request ,$id): Response
     {
-         $name="souheil";
+        ##  if(!isset($request["book_id"])){
 
-        $sess = $request->getSession();
-        $sess->set("name",$name);
-        return $this->render('livre/index.html.twig', ["name" => "souheil",
-                                            "desciption" => "bb",
-                                                "auteur" => "au",
-                                             "categorie" => "darama",
-                                                "nb_ech" => "333",
-                                              "nb_pages" => 333,
-                                            "evaluation" => "33333",
-                                                   "img" =>"https://upload.wikimedia.org/wikipedia/commons/thumb/3/3a/Cat03.jpg/1200px-Cat03.jpg"]);
+        #    return $this->render("base.html.twig");
+        #}
+
+        $rep = $this->getDoctrine()->getRepository("App:Book");
+        $book = $rep->find($id);
+
+        return $this->render('livre/index.html.twig', ["book" => $book]);
     }
-
 
     /**
      * @Route("/liste",name="liste")
      */
 
-    public function lister(){
+    public function lister($book){
 
-        return $this->render("livre/liste.html.twig", [
-            'controller_name' => 'ProfileController',
-            "firstname"=>"souheil",
-            "secondname"=>"benslama",
-            "rate"=>"10"
-        ]) ;
+        $users=$book->getUsers() ;
+        $rep=$this->getDoctrine()->getRepository("App:User");
+        $followers=$rep->findByBfollowers("First11");
+
+        return $this->render("livre/liste.html.twig", ["users"=>$users,"followers"=>$followers]) ;
+
     }
 
 
