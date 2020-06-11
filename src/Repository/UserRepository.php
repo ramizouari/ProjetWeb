@@ -4,7 +4,10 @@ namespace App\Repository;
 
 use App\Entity\User;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+<<<<<<< HEAD
 use Doctrine\ORM\NonUniqueResultException;
+=======
+>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 use Doctrine\Persistence\ManagerRegistry;
 use Symfony\Component\Security\Core\Exception\UnsupportedUserException;
 use Symfony\Component\Security\Core\User\PasswordUpgraderInterface;
@@ -37,6 +40,7 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
         $this->_em->flush();
     }
 
+<<<<<<< HEAD
 
     // /**
     //  * @return User[] Returns an array of User objects
@@ -58,6 +62,12 @@ class UserRepository extends ServiceEntityRepository implements PasswordUpgrader
     }
 
    /*
+=======
+    // /**
+    //  * @return User[] Returns an array of User objects
+    //  */
+    /*
+>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
     public function findByExampleField($value)
     {
         return $this->createQueryBuilder('u')

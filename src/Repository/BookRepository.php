@@ -19,6 +19,7 @@ class BookRepository extends ServiceEntityRepository
         parent::__construct($registry, Book::class);
     }
 
+<<<<<<< HEAD
 
 
 
@@ -36,6 +37,8 @@ class BookRepository extends ServiceEntityRepository
 
 
 
+=======
+>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
     // /**
     //  * @return Book[] Returns an array of Book objects
     //  */

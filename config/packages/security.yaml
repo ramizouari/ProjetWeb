@@ -14,9 +14,24 @@ security:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
+            
         main:
             anonymous: lazy
             provider: app_user_provider
+<<<<<<< HEAD
+=======
+            guard:
+                authenticators:
+                    - App\Security\LoginAuthenticator
+            remember_me:
+                secret:   '%kernel.secret%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
+            logout:
+                path: app_logout
+                # where to redirect after logout
+                # target: app_any_route
+>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 
             # activate different ways to authenticate
             # https://symfony.com/doc/current/security.html#firewalls-authentication
