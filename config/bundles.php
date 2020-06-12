@@ -13,8 +13,8 @@ return [
     Symfony\Bundle\DebugBundle\DebugBundle::class => ['dev' => true, 'test' => true],
     Symfony\Bundle\MakerBundle\MakerBundle::class => ['dev' => true],
     Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle::class => ['dev' => true, 'test' => true],
-<<<<<<< HEAD
-=======
-    SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle::class => ['all' => true],
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
+##<<<<<<< HEAD
+#=======
+ #   SymfonyCasts\Bundle\ResetPassword\SymfonyCastsResetPasswordBundle::class => ['all' => true],
+#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 ];

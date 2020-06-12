@@ -35,11 +35,24 @@ class LivreController extends AbstractController
 
     public function lister($book){
 
-        $users=$book->getUsers() ;
-        $rep=$this->getDoctrine()->getRepository("App:User");
-        $followers=$rep->findByBfollowers("First11");
+        $rep1=$this->getDoctrine()->getRepository("App:UserBook");
+        $users=$rep1->findBybookId($book->getId());
+        $rep2=$this->getDoctrine()->getRepository("App:User");
+         $usersliste=array();
+        $i=0;
+        foreach ($users as $us){
+           $usersliste[$i]=$rep2->find($us->getUserId());
+        }
 
-        return $this->render("livre/liste.html.twig", ["users"=>$users,"followers"=>$followers]) ;
+        $rep3=$this->getDoctrine()->getRepository("App:UserFollowedBook");
+        $follows=$rep3->findBybookId($book->getId());
+        $followersliste=array();
+        $i=0;
+        foreach ($follows as $foll){
+            $followers[$i]=$rep2->find($foll->getUserId());
+        }
+
+        return $this->render("livre/liste.html.twig", ["users"=>$usersliste,"followers"=>$followersliste]) ;
 
     }
 

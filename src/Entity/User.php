@@ -61,7 +61,7 @@ class User implements UserInterface
     // * @ORM\Column(type="json")
     // */
     
-<<<<<<< HEAD
+#<<<<<<< HEAD
   //  private $roles = [];
 
     private $plainPassword;
@@ -70,13 +70,13 @@ class User implements UserInterface
      * @ORM\OneToMany(targetEntity=Publication::class, mappedBy="proprietaire")
      */
     private $publications;
-=======
+#=======
     private $roles = [];
 
-    private $plainPassword;
+    #private $plainPassword;
 
     private $rememberSession;
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
+#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 
     public function getId(): ?int
     {
@@ -154,10 +154,10 @@ class User implements UserInterface
     public function __construct()
     {
         $this->booksCollection = new ArrayCollection();
-<<<<<<< HEAD
+#<<<<<<< HEAD
         $this->publications = new ArrayCollection();
-=======
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
+#=======
+#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
     }
 
   
@@ -269,7 +269,7 @@ class User implements UserInterface
 
         return $this;
     }
-<<<<<<< HEAD
+#<<<<<<< HEAD
 
     /**
      * @return Collection|Publication[]
@@ -297,8 +297,8 @@ class User implements UserInterface
             if ($publication->getProprietaire() === $this) {
                 $publication->setProprietaire(null);
             }
-        }
-=======
+        }}
+#=======
     public function getRememberSession(): ?string
     {
         return $this->rememberSession;
@@ -307,7 +307,7 @@ class User implements UserInterface
     public function setRememberSession(string $rememberSession): self
     {
         $this->rememberSession = $rememberSession;
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
+#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 
         return $this;
     }
