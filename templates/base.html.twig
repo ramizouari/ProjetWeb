@@ -27,11 +27,14 @@
                         </div>
                         <ul class="nav navbar-nav">
                             <li class="active">
-                                <button class="button">Home</button></li>
+                                <a href=" {{ path('profile',{'id': app.session.get($us) }}">
+                                    <button class="button">Home</button></li>
+                                </a>
+
                             <li><button class="button">setting</button></li>
                             <li><button class="button">page</button></li>
-
                             <li><a href="www.google.com" class="fa fa-home"> home</a> </li>
+
                         </ul>
 
                         <form class="navbar-form navbar-left" action="/action_page.php">
@@ -43,8 +46,7 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="#"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-                            <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-                           <li> <h1 id="sou" class="border-danger">souheil</h1>  </li>
+                            <li><a href="{{ url('') }}"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
 
                         </ul>
                     </div>

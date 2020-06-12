@@ -48,13 +48,13 @@ class LivreController extends AbstractController
         $follows=$rep3->findBybookId($book->getId());
         $followersliste=array();
         $i=0;
-        foreach ($follows as $foll){
-            $followers[$i]=$rep2->find($foll->getUserId());
-        }
+        foreach ($follows as $foll) {
+            $followers[$i] = $rep2->find($foll->getUserId());
 
+        }
         return $this->render("livre/liste.html.twig", ["users"=>$usersliste,"followers"=>$followersliste]) ;
 
-    }
+    }}
 
 
-}
+

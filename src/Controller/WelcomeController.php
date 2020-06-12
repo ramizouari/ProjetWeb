@@ -34,6 +34,7 @@ class WelcomeController extends AbstractController
         $user = $session->get("user");
         if($user)
             return $this->redirectToRoute("success");
+
         $signInForm= $this->createForm (SignInType::class,$user);
         $signInForm->handleRequest($request);
         $signUpForm= $this->createForm (SignUpType::class,$user);

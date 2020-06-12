@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+<table style="position:relative; right:-200px ;width: 800px  ;margin-top: 100px" class="position-relative table-bordered text-center ">
+
+<tr> <th style="font-size: 30px"> Mes publications  </th></tr>
+
+<tr> <td>    {% for pub in pubs  %}
+
+            <table>
+
+
+
+                {% if pub.getText()!=null %}
+
+                    <tr>
+                        <td> {{  pub.getText() }}</td>
+                    </tr>
+
+                {% endif %}
+
+                {% if pub.getimg()!=null %}
+
+
+                    <tr>
+                        <td> <img src="{{  pub.getimg() }}" alt="image non disponible"> </td>
+                    </tr>
+
+                {% endif %}
+
+            </table>
+
+        {% endfor %}</td></tr>
+
+
+
+</table>
+
+</body>
+</html>
