@@ -1,0 +1,82 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ProfileController!{% endblock %}
+
+{% block stylesheets %}
+
+{{ parent() }}
+
+
+
+{%  endblock %}
+
+
+{% block body %}
+
+    {{ parent() }}
+
+    <div class="float-left">
+
+        <div class="wrapper bg-dark " style="width: 300px ;height:800px;">
+            <!-- Sidebar -->
+            <nav id="sidebar">
+                <div class="sidebar-header text-white">
+                    <h3>book exchanger</h3>
+                </div>
+
+                <ul class="list-unstyled components text-light">
+                    <br>
+                    <br>
+                    <p>this your profile {{ user.getUserName() }} </p>
+                    <br>
+
+                    <img class="img-thumbnail img-circle" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
+                         src="{{ extract(null) }}"
+                         style="height: 168px; width: 168px;">
+                    <li class="active">
+                        <a href="{{ url('profile') }}" class="active" >journal</a>
+                    </li>
+                    <li>
+                        <a href="#">About</a>
+                    </li>
+                    <li>
+                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
+                           class="dropdown-toggle">Pages</a>
+                        <ul class="collapse list-unstyled" id="pageSubmenu">
+                            <li>
+                                <a href="#">Page 1</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 2</a>
+                            </li>
+                            <li>
+                                <a href="#">Page 3</a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                        <a href="#">mes echanges</a>
+                    </li>
+
+                    <li>
+                        <a href="#">mes abonnements</a>
+                    </li>
+
+                    <li>
+                        <a href="{{ url('meslivres') }}">mes livres</a>
+                    </li>
+
+                    <li>
+                        <a href="#">Settings</a>r
+                </ul>
+            </nav>
+
+        </div>
+
+    </div>
+
+
+
+
+{% endblock %}
+

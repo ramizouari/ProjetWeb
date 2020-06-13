@@ -1,20 +1,11 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block title %}Book Exchanger{% endblock %}
 
 {% block body %}
-<nav class="navbar navbar-light bg-light">
-  <a class="navbar-brand">Book Exchanger</a>
 
+        {{ parent() }}
 
-  <form class="form-inline">
-    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
-    <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
-  </form>
-<!-- >>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583 -->
-
-
-</nav>
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
@@ -23,11 +14,7 @@
 <div class="example-wrapper">
     <h1>Welcome to Book Exchanger ✅</h1>
 
-<<<<<<< HEAD
-    This friendly message is coming from:
-=======
     This WebSite is still in developpement
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
     <ul>
         <li>Your controller at <code><a href="{{ 'D:/dev/Web/ProjetWeb/ProjetWeb/src/Controller/WelcomeController.php'|file_link(0) }}">src/Controller/WelcomeController.php</a></code></li>
         <li>Your template at <code><a href="{{ 'D:/dev/Web/ProjetWeb/ProjetWeb/templates/welcome/welcome.html.twig'|file_link(0) }}">templates/welcome/welcome.html.twig</a></code></li>
@@ -35,5 +22,4 @@
 </div>
 <a href="{{ path('app_login') }}" class="btn btn-primary">Sign In</a>
 <a href="{{ path('signup') }}" class="btn btn-primary">Sign Up</a>
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 {% endblock %}

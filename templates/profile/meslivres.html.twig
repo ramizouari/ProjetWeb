@@ -1,0 +1,34 @@
+{% extends "profile/index.html.twig" %}
+
+
+
+
+{% block body %}
+
+{{ parent() }}
+
+
+
+    {% for livre in meslivres   %}
+
+        <div class="float-left " style="margin:10px">
+
+        <a href="https://feta.egybest.rocks/movie/bride-of-scarecrow-2018/?ref=home-bluray" class="movie ">
+
+            <div style="width:250px" class="card float-left">
+
+                <div class="card-body"> <img style="width: 200px;height: 270px" class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+
+                </div>
+
+                <div class="card-header " style="margin-bottom: 0px">
+                    <h5 class="card-title text-center">{{  livre.getTitle()}}</h5>
+
+                </div>
+        </a>
+
+        </div>
+{% endfor %}
+
+
+{% endblock %}

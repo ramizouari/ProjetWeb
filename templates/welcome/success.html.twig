@@ -1,12 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
-<<<<<<< HEAD
-{% block title %}Hello WelcomeController!{% endblock %}
-=======
 {% block title %}{{user.firstName}} {{user.lastName}}{% endblock %}
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 
 {% block body %}
+
+    {{ parent() }}
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
