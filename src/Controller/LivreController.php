@@ -36,7 +36,7 @@ class LivreController extends AbstractController
     public function lister($book){
 
         $rep1=$this->getDoctrine()->getRepository("App:UserBook");
-        $users=$rep1->findBybookId($book->getId());
+        $users=$rep1->findBy(["bookId"=>$book->getId()]);
         $rep2=$this->getDoctrine()->getRepository("App:User");
          $usersliste=array();
         $i=0;

@@ -37,6 +37,7 @@ class WelcomeController extends AbstractController
 
         $signInForm= $this->createForm (SignInType::class,$user);
         $signInForm->handleRequest($request);
+
         $signUpForm= $this->createForm (SignUpType::class,$user);
         $signUpForm->handleRequest($request);
         if($signUpForm->isSubmitted() && $signUpForm->isValid())
@@ -99,7 +100,7 @@ class WelcomeController extends AbstractController
         if(!$this->getUser())
             return $this->redirectToRoute("welcome");
         //To do: redirect to user's news feed page
-        $res= $this->render('welcome/success.html.twig',["user"=>$this->getUser()]);
+        $res= $this->forward("App\\Controller\\ProfileController::index");
         return $res;
     }
 

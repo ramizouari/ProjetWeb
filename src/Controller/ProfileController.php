@@ -15,18 +15,9 @@ class ProfileController extends AbstractController
      */
     public function index(Request $request)
     {
-        $id=$request->query->get('id');
-        $rep=$this->getDoctrine()->getRepository("App:User");
-        $user=$rep->find($id);
 
-        return $this->render('profile/index.html.twig',["user"=>$user]);
-    }
-    /**
-     * @Route("/listej", name="liste_journal")
-     */
+        //$user=$request->request->get('user');
 
-    public function lister_j($id)
-    {
        /* try {
             $rep=$this->getDoctrine()->getRepository("App:Publication");
             $rep2=$this->getDoctrine()->getRepository("App:User");
@@ -38,9 +29,32 @@ class ProfileController extends AbstractController
             $pubs=null ;
     //}
 
-        return$this->render("profile/journale.html.twig",["pubs"=>$pubs]);
+        return$this->render("profile/journale.html.twig",["pubs"=>$pubs,"user"=>$this->getUser()]);
 
     }
 
+
+    /**
+     * @Route("/meslivres" , name="meslivres")
+     */
+
+    public function meslivres()
+    {
+
+        $rep=$this->getDoctrine()->getRepository("App:UserBook");
+        $livres=$rep->findBy(["userId"=>$this->getUser()->getId()]);
+
+        $rep2=$this->getDoctrine()->getRepository("App:Book");
+        $meslivre=array();
+        $i=0;
+      foreach ($livres as $livre){
+
+          $meslivre[$i]=$rep2->findOneBy(["id"=>$livre->getBookId()]);
+            $i++;
+           }
+
+        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$meslivre, "user"=>$this->getUser()));
+
+    }
 
 }

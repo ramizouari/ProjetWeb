@@ -47,36 +47,22 @@ class User implements UserInterface
 
      /**
      * @ORM\ManyToMany(targetEntity=Book::class, inversedBy="users")
-<<<<<<< HEAD
-      * @ORM\JoinTable(name="user_book");
-=======
->>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
      */
     private $booksCollection;
       /**
      * @ORM\ManyToMany(targetEntity=Book::class)
      */
     private $followedBooks;
+
    //     /**
     // * @ORM\Column(type="json")
     // */
     
-#<<<<<<< HEAD
-  //  private $roles = [];
+    private $roles = [];
 
     private $plainPassword;
 
-    /**
-     * @ORM\OneToMany(targetEntity=Publication::class, mappedBy="proprietaire")
-     */
-    private $publications;
-#=======
-    private $roles = [];
-
-    #private $plainPassword;
-
     private $rememberSession;
-#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 
     public function getId(): ?int
     {
@@ -154,10 +140,6 @@ class User implements UserInterface
     public function __construct()
     {
         $this->booksCollection = new ArrayCollection();
-#<<<<<<< HEAD
-        $this->publications = new ArrayCollection();
-#=======
-#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
     }
 
   
@@ -269,36 +251,6 @@ class User implements UserInterface
 
         return $this;
     }
-#<<<<<<< HEAD
-
-    /**
-     * @return Collection|Publication[]
-     */
-    public function getPublications(): Collection
-    {
-        return $this->publications;
-    }
-
-    public function addPublication(Publication $publication): self
-    {
-        if (!$this->publications->contains($publication)) {
-            $this->publications[] = $publication;
-            $publication->setProprietaire($this);
-        }
-
-        return $this;
-    }
-
-    public function removePublication(Publication $publication): self
-    {
-        if ($this->publications->contains($publication)) {
-            $this->publications->removeElement($publication);
-            // set the owning side to null (unless already changed)
-            if ($publication->getProprietaire() === $this) {
-                $publication->setProprietaire(null);
-            }
-        }}
-#=======
     public function getRememberSession(): ?string
     {
         return $this->rememberSession;
@@ -307,7 +259,6 @@ class User implements UserInterface
     public function setRememberSession(string $rememberSession): self
     {
         $this->rememberSession = $rememberSession;
-#>>>>>>> 0985da7569f599d074b8f63d8a3d0630f2138583
 
         return $this;
     }
