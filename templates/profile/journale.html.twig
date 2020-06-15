@@ -1,0 +1,77 @@
+{% extends "profile/index.html.twig" %}
+
+
+
+
+
+{% block body %}
+
+    {{ parent() }}
+
+<table style="position:relative; right:-400px " class="position-relative" >
+
+    <tr>
+        <td colspan="2">
+            <label>
+                <textarea cols="60" role="textbox">  Créer une publication  </textarea>
+            </label>
+
+        </td>
+
+    </tr>
+
+    <tr>
+
+        <td width="40px">
+            <input type="file" accept="image/*,image/heif,image/heic,video/*,video/mp4,video/x-m4v,video/x-matroska"
+                   class="mkhogb32" multiple="">
+        </td>
+
+        <td>
+    <span> <img draggable="false" height="20" width="20" alt=""
+                src="https://static.xx.fbcdn.net/rsrc.php/v3/yA/r/6C1aT2Hm3x-.png"></span><span
+                    dir="auto">Photo/Vidéo</span>
+            <div class="n00je7tq arfg74bv qs9ysxi8 k77z8yql i09qtzwb n7fi1qx3 b5wmifdl hzruof5a pmk7jnqg j9ispegn kr520xx4 c5ndavph art1omkt ot9fgl3s"
+                 data-visualcompletion="ignore"></div>
+        </td>   </tr>
+
+
+
+</table>
+<table style="position:relative; right:-200px ;width: 800px  ;margin-top: 100px" class="position-relative table-bordered text-center ">
+
+<tr> <th style="font-size: 30px"> Mes publications  </th></tr>
+
+<tr> <td>    {% for pub in pubs  %}
+
+            <table>
+
+
+
+                {% if pub.getText()!=null %}
+
+                    <tr>
+                        <td> {{  pub.getText() }}</td>
+                    </tr>
+
+                {% endif %}
+
+                {% if pub.getimg()!=null %}
+
+
+                    <tr>
+                        <td> <img src="{{  pub.getimg() }}" alt="image non disponible"> </td>
+                    </tr>
+
+                {% endif %}
+
+            </table>
+
+        {% endfor %}</td></tr>
+
+
+
+</table>
+
+{% endblock %}
+

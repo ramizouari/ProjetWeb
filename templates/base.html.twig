@@ -1,14 +1,77 @@
 <!DOCTYPE html>
-<html>
+<html  lang="fr">
     <head>
         <meta charset="UTF-8">
         <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> 
         
         <title>{% block title %}Welcome!{% endblock %}</title>
-        {% block stylesheets %}{% endblock %}
+        {% block stylesheets %}
+
+            <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
+            <link rel="stylesheet" href="public/node_modules/font-awesome-4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/base_style.css') }}">
+            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
+
+
+
+
+        {% endblock %}
     </head>
     <body>
-        {% block body %}{% endblock %}
+        {% block body %}
+
+            <div style="margin-bottom:100px">
+
+                <nav  class="navbar navbar-inverse navbar-expand-lg navbar-light fixed-top bg-light ">
+
+                    <div class="container-fluid">
+                        <div class="navbar-brand">
+                            <a class="navbar-brand" href="#">Book Exchanger</a>
+
+
+
+                        </div>
+
+
+
+                        <form class="form-inline">
+                            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+                        </form>
+
+
+                        <ul class="nav navbar-nav">
+                            <li class="active mr-lg-2">
+                                <a href="{{ url('acc') }}">
+                                    <button class="btn btn-outline-primary">
+
+                                        <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+
+                                    </button>
+                                </a></li>
+
+                            <li class="mr-lg-2"><a href="{{ url('profile') }}"><button class="btn btn-outline-primary"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></a></i></button></li>
+                            <li class="mr-lg-2"><button class="btn btn-outline-primary"><i class="fa fa-book fa-2x" aria-hidden="true"></i></button></li>
+
+
+                            <li class="mr-lg-2"><button class="btn btn-outline-primary"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></button></li>
+
+
+                        </ul>
+
+
+                        <ul class="nav navbar-nav navbar-right">
+                            <li><a href="#"> <button class="btn btn-outline-primary "><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></button> </a></li>
+
+                        </ul>
+                    </div>
+
+
+                </nav>
+
+            </div>
+        {% endblock %}
         {% block javascripts %}{% endblock %}
     </body>     
     </html>
