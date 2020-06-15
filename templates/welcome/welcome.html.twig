@@ -5,21 +5,37 @@
 {% block body %}
 
         {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/welcome_style.css') }}">
 
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
     .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+
+
 </style>
 
 <div class="example-wrapper">
     <h1>Welcome to Book Exchanger ✅</h1>
 
-    This WebSite is still in developpement
-    <ul>
-        <li>Your controller at <code><a href="{{ 'D:/dev/Web/ProjetWeb/ProjetWeb/src/Controller/WelcomeController.php'|file_link(0) }}">src/Controller/WelcomeController.php</a></code></li>
-        <li>Your template at <code><a href="{{ 'D:/dev/Web/ProjetWeb/ProjetWeb/templates/welcome/welcome.html.twig'|file_link(0) }}">templates/welcome/welcome.html.twig</a></code></li>
-    </ul>
+   <p> Book Exchanger is a book exchange website. Thanks to its intelligent algorithms, Book Exchanger automatically searches for the person with whom you can trade books unlimtedly and for free . it offers a whole social network to all its members to share their passions.</p>
 </div>
-<a href="{{ path('app_login') }}" class="btn btn-primary">Sign In</a>
+
+
+
+    <div class="container-fluid">
+
+        <img class="img_acc" src="{{ asset('imgs/book.jpg') }}" alt="Snow" style="width: 50%; height: 500px">
+
+        <div class="img-txt"> <p> find  it <br>  enjoy it </p></div>
+
+    </div>
+
+
+    <a href="{{ path('app_login') }}" class="btn btn-primary">Sign In</a>
 <a href="{{ path('signup') }}" class="btn btn-primary">Sign Up</a>
+
+
+
+
+
 {% endblock %}

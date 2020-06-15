@@ -100,7 +100,7 @@ class WelcomeController extends AbstractController
         if(!$this->getUser())
             return $this->redirectToRoute("welcome");
         //To do: redirect to user's news feed page
-        $res= $this->forward("App\\Controller\\ProfileController::index");
+        $res= $this->forward("App\\Controller\\AcceuilController::index");
         return $res;
     }
 
