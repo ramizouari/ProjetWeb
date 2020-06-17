@@ -8,8 +8,14 @@
 {{ parent() }}
 
 
-
+<div class="float-lg-none">
     {% for livre in meslivres   %}
+
+         {%   if meslivres == null %}
+
+           <h1> il n'ya pas des livres</h1>
+
+        {% endif %}
 
         <div class="float-left " style="margin-left:10px">
 
@@ -21,14 +27,35 @@
 
                 </div>
 
-                <div class="card-header " style="margin-bottom: 0px">
+                <div class="card-header " style="margin-bottom: 0px;padding-left: 0px;padding-right: 0px; align-content: center">
                     <h5 class="card-title text-center">{{  livre.title}}</h5>
 
                 </div>
-        </a>
+            </div>
+         </a>
 
         </div>
+
+
+
+
 {% endfor %}
+
+</div>
+
+    <nav aria-label="Page navigation example " style="position: absolute; bottom:-600px ;left: 700px">
+        <ul class="pagination">
+
+
+
+            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page-1 })  }}">Previous</a></li>
+
+            {% for i in 1 .. nbpages %}
+            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page":i}) }}"> {{ i }} </a></li>
+             {% endfor %}
+
+            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page+1 }) }}">Next</a></li>
+        </ul>
 
 
 {% endblock %}

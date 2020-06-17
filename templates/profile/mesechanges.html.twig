@@ -1,61 +1,114 @@
 {% extends "profile/index.html.twig" %}
 
 
-
-
 {% block body %}
+
 
 {{ parent() }}
 
 
-<div class="float-lg-none">
-    {% for livre in meslivres   %}
 
-         {%   if meslivres == null %}
+        <hr>
+        <div class="row">
+            <h2 class="col-sm col-md-3 text-center">sent requests</h2>
+            <br>
+            <div class="col-sm">
+                <table id="userTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+                        <th class="th-sm">Exchange Number
 
-           <h1> il n'ya pas des livres</h1>
+                        </th>
+                        <th class="th-sm">Requested Username
 
-        {% endif %}
+                        </th>
+                        <th class="th-sm">Requested book
 
-        <div class="float-left " style="margin-left:10px">
+                        </th>
+                        <th class="th-sm"> Available Book
 
-        <a href="{{ path('livre',{'bookId':livre.id}) }}">
+                        </th>
+                        <th class="th-sm">Exchange Date
 
-            <div style="width:250px" class="card float-left">
+                        </th>
+                        <th class="th-sm">State</th>
 
-                <div class="card-body"> <img style="width: 200px;height: 270px" class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if mesdemandes is not empty %}
 
-                </div>
+                        {% for demande in mesdemandes %}
+                            <tr>
+                                <td>{{ demande.id }}</td>
+                                <td>{{ demande.requesteduser }} </td>
+                                <td>{{ demande.requestedbook }}</td>
+                                <td>{{ demande.availablebook }} </td>
+                                <td>    </td>
+                                <td>    </td>
+                            </tr>
 
-                <div class="card-header " style="margin-bottom: 0px;padding-left: 0px;padding-right: 0px; align-content: center">
-                    <h5 class="card-title text-center">{{  livre.title}}</h5>
-
-                </div>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
             </div>
-         </a>
 
         </div>
+        <hr>
 
 
+        <div class="row">
+            <h2 class="col-sm col-md-3 text-center">recieved requests</h2>
+            <div class="col-sm">
+                <table id="followerTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                    <thead>
+                    <tr>
+
+                        <th class="th-sm">Exchange Number</th>
+
+                        <th class="th-sm">Requester Username</th>
+
+                        <th class="th-sm">Requested book</th>
+
+                        <th class="th-sm"> Available Book</th>
+
+                        <th class="th-sm">Exchange Date </th>
+
+                        <th class="th-sm">State</th>
+
+                    </tr>
+                    </thead>
+                    <tbody>
+                    {% if mesreponses is not empty %}
+
+                        {% for echange in mesreponses %}
+                            <tr>
+                                <td>{{ echange.id }}</td>
+                                <td>{{ echange.requesteruser }} </td>
+                                <td>{{ echange.requestedbook }}</td>
+                                <td>{{ echange.availablebook }} </td>
+                                <td></td>
+                                <td></td>
 
 
-{% endfor %}
+                            </tr>
 
-</div>
-
-    <nav aria-label="Page navigation example " style="position: absolute; bottom:-600px ;left: 700px">
-        <ul class="pagination">
-
-
-
-            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page-1 })  }}">Previous</a></li>
-
-            {% for i in 1 .. nbpages %}
-            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page":i}) }}"> {{ i }} </a></li>
-             {% endfor %}
-
-            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page+1 }) }}">Next</a></li>
-        </ul>
+                        {% endfor %}
+                    {% else %}
+                        <tr>
+                            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+                        </tr>
+                    {% endif %}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
 
 {% endblock %}
