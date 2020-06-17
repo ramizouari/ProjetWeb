@@ -1,18 +1,17 @@
 <!DOCTYPE html>
 <html  lang="fr">
     <head>
-        <meta charset="UTF-8">
-        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> 
-        
+        <meta charset="UTF-8">        
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
-
-            <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
-            <link rel="stylesheet" href="public/node_modules/font-awesome-4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/base_style.css') }}">
-            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
-
+            <link rel="stylesheet" href="{{ asset('node_modules/datatables/media/css/jquery.dataTables.css') }}">
+            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
+            <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
+            <link rel="stylesheet" href="{{ asset('node_modules/mdbootstrap/css/mdb.css') }}">
+                    <link rel="stylesheet" 
+            href="{{ asset('node_modules/mdbootstrap/addons/datatables.min.css') }}">
+            <link rel="stylesheet" 
+            href="{{ asset('node_modules/mdbootstrap/css/addons/datatables-select.min.css') }}">
 
 
 
@@ -43,7 +42,7 @@
 
                         <ul class="nav navbar-nav">
                             <li class="active mr-lg-2">
-                                <a href="{{ url('acc') }}">
+                                <a href="{{ path('acc') }}">
                                     <button class="btn btn-outline-primary">
 
                                         <i class="fa fa-home fa-2x" aria-hidden="true"></i>
@@ -51,8 +50,14 @@
                                     </button>
                                 </a></li>
 
-                            <li class="mr-lg-2"><a href="{{ url('profile') }}"><button class="btn btn-outline-primary"><i class="fa fa-user-circle fa-2x" aria-hidden="true"></a></i></button></li>
-                            <li class="mr-lg-2"><button class="btn btn-outline-primary"><i class="fa fa-book fa-2x" aria-hidden="true"></i></button></li>
+                            <li class="mr-lg-2"><a href="{{ path('profile') }}"><button class="btn btn-outline-primary">
+                                <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                            </button></a></li>
+
+                            <li class="mr-lg-2"><a href="{{ path('meslivres')}}"><button class="btn btn-outline-primary"> 
+                            
+                                <i class="fa fa-book fa-2x" aria-hidden="true"></i></button> </a>
+                            </li>
 
 
                             <li class="mr-lg-2"><button class="btn btn-outline-primary"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></button></li>
@@ -62,7 +67,7 @@
 
 
                         <ul class="nav navbar-nav navbar-right">
-                            <li><a href="#"> <button class="btn btn-outline-primary "><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></button> </a></li>
+                            <li><a href="{{ path('app_logout') }}"> <button class="btn btn-outline-primary "><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i></button> </a></li>
 
                         </ul>
                     </div>
@@ -72,6 +77,19 @@
 
             </div>
         {% endblock %}
-        {% block javascripts %}{% endblock %}
+        {% block javascripts %}
+        <script src="{{ asset('node_modules/jquery/dist/jquery.js') }}">
+        </script>
+        <script src="{{ asset('node_modules/popper.js/dist/popper.js') }}">
+        </script>
+        <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
+        </script>
+         <script src="{{ asset('node_modules/mdbootstrap/js/mdb.js') }}">
+        </script>
+          <script src="{{ asset('node_modules/mdbootstrap/js/addons/datatables.min.js') }}">
+        </script>
+         <script src="{{ asset('node_modules/mdbootstrap/js/addons/datables-select.min.js') }}">
+        </script>
+{% endblock %}
     </body>     
     </html>

@@ -54,14 +54,18 @@ class User implements UserInterface
      */
     private $followedBooks;
 
-   //     /**
-    // * @ORM\Column(type="json")
-    // */
-    
+        /**
+    * @ORM\Column(type="integer")
+    */
+    private $phoneNumber;
+
+    /**
+    * @ORM\Column(type="json")
+    */
     private $roles = [];
 
     private $plainPassword;
-
+    private $photo;
     private $rememberSession;
 
     public function getId(): ?int
@@ -259,6 +263,30 @@ class User implements UserInterface
     public function setRememberSession(string $rememberSession): self
     {
         $this->rememberSession = $rememberSession;
+
+        return $this;
+    }
+
+    public function getPhoto()
+    {
+        return $this->photo;
+    }
+    
+    public function setPhoto($photo)
+    {
+        $this->photo = $photo;
+
+        return $this;
+    }
+
+    public function getPhoneNumber()
+    {
+        return $this->phoneNumber;
+    }
+    
+    public function setPhoneNumber($phoneNumber)
+    {
+        $this->phoneNumber = $phoneNumber;
 
         return $this;
     }

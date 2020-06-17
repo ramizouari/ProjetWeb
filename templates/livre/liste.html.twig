@@ -3,11 +3,49 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/livre_style.css') }}">
 </head>
 
 <body>
 
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">Nom
+
+      </th>
+      <th class="th-sm">Prenom
+
+      </th>
+      <th class="th-sm">Addresse
+
+      </th>
+      <th class="th-sm">Note
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+ {% if users is not empty %}
+
+            {% for cat in users %}
+                <tr>
+                <td>{{ cat.firstName }}</td>
+                <td>{{ cat.lastName }} <i class="i-pc"></i></td>
+                <td>{{ cat.email }}</td>
+                <td class="tar">
+                <button type="button" class="btn btn-indigo btn-sm m-0">Demande Echange</button>
+                <button type="button" class="btn btn-indigo btn-sm m-0">Void Profil</button>
+                </td>
+                </tr>
+
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
 
 <table id="" class="table-bordered tab ">
     <thead>
@@ -15,31 +53,28 @@
         <th colspan="4" align="left" height="50"> liste des possessers</th>
     </tr>
     <tr>
-        <th>nom</th>
-        <th>prenom</th>
-        <th>rate</th>
-        <th>adresse</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse</th>
+        <th>Note</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
+    
 
         <a href=></a>
 
         {% if users is not empty %}
 
             {% for cat in users %}
-
-                <td>{{ cat.getFirstName() }}</td>
-                <td>{{ cat.getLastName() }} <i class="i-pc"></i></td>
-                <td>{{ cat.getEmail() }}</td>
+                <tr>
+                <td>{{ cat.firstName }}</td>
+                <td>{{ cat.lastName }} <i class="i-pc"></i></td>
+                <td>{{ cat.email }}</td>
                 <td class="tar">
-                    <div>
-                        <a href="#">
-                            <button class="button-"> demander echange</button>
-                        </a>
-                    </div>
-
+                <a href="#">
+                    <button class="button-"> demander echange</button>
+                </a>
                     <a href="">
                         <button class="button-">
                             voir profile
@@ -47,10 +82,13 @@
                     </a>
 
                 </td>
+                </tr>
 
             {% endfor %}
         {% else %}
+            <tr>
             <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+            </tr>
         {% endif %}
 
 
@@ -84,23 +122,23 @@
         <th colspan="4" align="left" height="50"> liste d'attente</th>
     </tr>
     <tr>
-        <th>nom</th>
-        <th>prenom</th>
-        <th>rate</th>
-        <th>adresse</th>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse</th>
+                <th>Note</th>
     </tr>
     </thead>
     <tbody>
-    <tr>
 
 
         {% if followers is not empty %}
 
         {% for foll in followers %}
+            <tr>
 
-        <td>{{ foll.getFirstName() }}</td>
-        <td>{{ foll.getLastName() }} <i class="i-pc"></i></td>
-        <td>{{ foll.getEmail() }}</td>
+        <td>{{ foll.firstName }}</td>
+        <td>{{ foll.lastName }} <i class="i-pc"></i></td>
+        <td>{{ foll.email }}</td>
         <td class="tar"> <div>
                 <button class="button-">
                     </i> demander echange</a>
@@ -109,15 +147,13 @@
                 </i> voir profile </a>
             </button>
         </td>
-
+        </tr>
             {% endfor %}
         {% else %}
+        <tr>
             <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+        </tr>
         {% endif %}
-
-
-    </tr>
-
     </tbody>
     <tfoot>
 
@@ -216,7 +252,6 @@
 
 
 </div>
-
 
 
 

@@ -13,7 +13,7 @@
 
         <div class="float-left " style="margin-left:10px">
 
-        <a href="https://feta.egybest.rocks/movie/bride-of-scarecrow-2018/?ref=home-bluray" class="movie ">
+        <a href="{{ path('livre',{'bookId':livre.id}) }}">
 
             <div style="width:250px" class="card float-left">
 
@@ -22,7 +22,7 @@
                 </div>
 
                 <div class="card-header " style="margin-bottom: 0px">
-                    <h5 class="card-title text-center">{{  livre.getTitle()}}</h5>
+                    <h5 class="card-title text-center">{{  livre.title}}</h5>
 
                 </div>
         </a>
