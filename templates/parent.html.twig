@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html  lang="fr">
+    <head>
+        <meta charset="UTF-8">
+        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet"> 
+        
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        {% block stylesheets %}
+
+            <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+            <link rel="stylesheet" href="node_modules/bootstrap/dist/css/base_style.css'">
+            <!-- <link rel="stylesheet" href="node_modules/bootstrap/dist/js/bootstrap.js">
+            -->
+
+
+
+        {% endblock %}
+    </head>
+    <body>
+
+
+    <nav class="navbar navbar-light bg-light">
+        <a class="navbar-brand">Book Exchanger</a>
+        <form class="form-inline">
+            <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+        </form>
+    </nav>
+
+
+        {% block body %}
+
+        {% endblock %}
+        {% block javascripts %}{% endblock %}
+    </body>     
+    </html>

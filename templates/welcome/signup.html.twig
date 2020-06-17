@@ -1,8 +1,10 @@
-{% extends 'base.html.twig' %}
+{% extends 'base2.html.twig' %}
 
 {% block title %}Book Exchanger{% endblock %}
 
 {% block body %}
+
+    {{ parent() }}
 
 <style>
     .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
@@ -32,6 +34,10 @@
       <div class="form-group">
       {{form_label(sign_up.plainPassword,"Password")}}
     {{ form_widget(sign_up.plainPassword,{"attr":{"class":"form-control"}}) }}
+    </div>
+       <div class="form-group">
+      {{form_label(sign_up.phoneNumber,"Phone Number")}}
+    {{ form_widget(sign_up.phoneNumber,{"attr":{"class":"form-control"}}) }}
     </div>
     {{form_end(sign_up)}}
          <a href="{{ path('app_login') }}" class="small">Already have an Account? </a>

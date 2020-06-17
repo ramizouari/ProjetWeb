@@ -1,0 +1,40 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}Hello WelcomeController!{% endblock %}
+
+{% block body %}
+
+{{parent()}}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+
+{{ form_start(sign_in,{"attr":{"class":"form-group"}}) }}
+  {{ form_errors(sign_in,{"attr":{"class":"alert alert-danger", 
+    "role": "alert"}}) }}
+<fieldset>
+<legend>Fill the form</legend>
+  
+  <div class="form-group">
+    {{form_label(sign_in.email,"Email Address")}}
+        {{ form_widget(sign_in.email,{"attr":{"class":"form-control"}}) }}
+</div>
+  
+  <div class="form-group">
+      {{form_label(sign_in.plainPassword,"Password")}}
+    {{ form_widget(sign_in.plainPassword,{"attr":{"class":"form-control"}}) }}
+    </div>
+    <div class="form-group form-check mb-2">
+    {{form_widget(sign_in.rememberSession,{"attr":{"class":"form-check-input"}})}}
+     {{form_label(sign_in.rememberSession,"Remember Me",
+     {"attr":{
+         "class":"form-check-label"
+     }})}}
+     </div> 
+          <a class="small">Forgot Password?</a> <a href="{{ path('signup') }}" class="small">Sign Up </a>
+
+    </fieldset>
+    {{form_end(sign_in)}}
+{% endblock %}

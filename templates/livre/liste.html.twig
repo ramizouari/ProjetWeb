@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+
+<body>
+
+<table id="dtBasicExample" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+  <thead>
+    <tr>
+      <th class="th-sm">Nom
+
+      </th>
+      <th class="th-sm">Prenom
+
+      </th>
+      <th class="th-sm">Addresse
+
+      </th>
+      <th class="th-sm">Note
+
+      </th>
+    </tr>
+  </thead>
+  <tbody>
+ {% if users is not empty %}
+
+            {% for cat in users %}
+                <tr>
+                <td>{{ cat.firstName }}</td>
+                <td>{{ cat.lastName }} <i class="i-pc"></i></td>
+                <td>{{ cat.email }}</td>
+                <td class="tar">
+                <button type="button" class="btn btn-indigo btn-sm m-0">Demande Echange</button>
+                <button type="button" class="btn btn-indigo btn-sm m-0">Void Profil</button>
+                </td>
+                </tr>
+
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+<table id="" class="table-bordered tab ">
+    <thead>
+    <tr>
+        <th colspan="4" align="left" height="50"> liste des possessers</th>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse</th>
+        <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+    
+
+        <a href=></a>
+
+        {% if users is not empty %}
+
+            {% for cat in users %}
+                <tr>
+                <td>{{ cat.firstName }}</td>
+                <td>{{ cat.lastName }} <i class="i-pc"></i></td>
+                <td>{{ cat.email }}</td>
+                <td class="tar">
+                <a href="#">
+                    <button class="button-"> demander echange</button>
+                </a>
+                    <a href="">
+                        <button class="button-">
+                            voir profile
+                        </button>
+                    </a>
+
+                </td>
+                </tr>
+
+            {% endfor %}
+        {% else %}
+            <tr>
+            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+            </tr>
+        {% endif %}
+
+
+    </tr>
+
+    </tbody>
+    <tfoot>
+
+    <tr align="center">
+        <td colspan="4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </td>
+    </tr>
+
+    </tfoot>
+
+</table>
+
+
+<table class="table-bordered  tab">
+    <thead>
+    <tr>
+        <th colspan="4" align="left" height="50"> liste d'attente</th>
+    </tr>
+    <tr>
+        <th>Nom</th>
+        <th>Prenom</th>
+        <th>Adresse</th>
+                <th>Note</th>
+    </tr>
+    </thead>
+    <tbody>
+
+
+        {% if followers is not empty %}
+
+        {% for foll in followers %}
+            <tr>
+
+        <td>{{ foll.firstName }}</td>
+        <td>{{ foll.lastName }} <i class="i-pc"></i></td>
+        <td>{{ foll.email }}</td>
+        <td class="tar"> <div>
+                <button class="button-">
+                    </i> demander echange</a>
+                </button> </div>
+            <button class="button-">
+                </i> voir profile </a>
+            </button>
+        </td>
+        </tr>
+            {% endfor %}
+        {% else %}
+        <tr>
+            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+        </tr>
+        {% endif %}
+    </tbody>
+    <tfoot>
+
+    <tr align="center">
+        <td colspan="4">
+            <nav aria-label="Page navigation example">
+                <ul class="pagination">
+                    <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                    <li class="page-item"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item"><a class="page-link" href="#">2</a></li>
+                    <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                </ul>
+            </nav>
+        </td>
+    </tr>
+
+    </tfoot>
+
+</table>
+
+
+<!-- testing -->
+
+
+<div>
+
+    <div class="mbox">
+        <div class="hd pda bdb"><strong> similaire books </strong> <a
+                    href="https://feta.egybest.rocks/movies/latest-bluray-2020-2019" class="left">more »</a></div>
+        <div class="h_scroll">
+            <span class="_scroll left i-ar-l"></span> <span class="_scroll right hide i-ar-r"></span>
+            <div class="contents movies_small">
+
+                <span class="_scroll right i-ar-r"></span>
+
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card-deck">
+
+
+        <a href="https://feta.egybest.rocks/movie/bride-of-scarecrow-2018/?ref=home-bluray" class="movie">
+
+            <div class="card">
+
+
+
+                <div class="card-body"> <img style="width: 200px;height: 270px" class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+
+                </div>
+
+                <div class="card-header">
+                    <h5 class="card-title text-center">Bride of Scarecrow (2018)</h5>
+
+                </div>
+
+
+
+        </a>
+
+
+               </div>
+
+
+
+    <a href="#" class="movie">
+    <div class="card">
+   <div class="card-body"> <img style="width:200px;height: 270px" class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZajAIQV-BxQDPl5jrf0Ir3wnJ93kf54P1WbtwnnwNCvPgncJu&usqp=CAU" alt="Card image cap">
+
+   </div>
+
+    </a>
+        <div class="card-header">
+            <h5 class="card-title">The Glorious Seven (2019)</h5>
+        </div>
+    </div>
+
+    <a href="https://www.google.com">
+    <div class="card">
+        <div  class="card-body">
+
+            <img style="width: 200px;height: 300px" class="card-img-top" src="https://cdn.shopify.com/s/files/1/0176/9202/products/Sea_Salt_e4f97e1e-08df-4a1a-a42e-fc507db766ea_grande.jpg?v=1586440065" alt="Card image cap">
+
+
+        </div>
+          </a>
+      <div class="card-header">
+            <h5 class="card-title">the book (2020) </h5>
+
+        </div>
+    </div>
+
+
+</div>
+
+
+
+</body>
+
+</html>

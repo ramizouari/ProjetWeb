@@ -34,8 +34,10 @@ class WelcomeController extends AbstractController
         $user = $session->get("user");
         if($user)
             return $this->redirectToRoute("success");
+
         $signInForm= $this->createForm (SignInType::class,$user);
         $signInForm->handleRequest($request);
+
         $signUpForm= $this->createForm (SignUpType::class,$user);
         $signUpForm->handleRequest($request);
         if($signUpForm->isSubmitted() && $signUpForm->isValid())
@@ -98,47 +100,8 @@ class WelcomeController extends AbstractController
         if(!$this->getUser())
             return $this->redirectToRoute("welcome");
         //To do: redirect to user's news feed page
-        $res= $this->render('welcome/success.html.twig',["user"=>$this->getUser()]);
+        $res= $this->forward("App\\Controller\\AcceuilController::index");
         return $res;
-    }
-
-    /**
-     * @Route("/signout", name="signout")
-     */
-    public function signout(SessionInterface $session,Request $request)
-    {
-        $session->clear();
-        return $this->redirectToRoute("welcome");
-    }
-
-    /**
-     * @Route("/signin", name="signin")
-     */
-    public function signin(SessionInterface $session,Request $request)
-    {
-        $user = $this->getUser();
-
-        if($user)
-            return $this->redirectToRoute("success");
-        $signInForm= $this->createForm (SignInType::class,$user);
-        $signInForm->handleRequest($request);
-      if($signInForm->isSubmitted())
-        {
-            $user =$signInForm->getData();
-            $plainPassword=$user->getPlainPassword();
-            $user->eraseCredentials();
-            $userRepo = $this->getDoctrine()->getRepository(User::class);
-           $user=$userRepo->findOneBy(["email"=>$user->getEmail()]);
-           if(!$user || !$this->passwordEncoder->isPasswordValid($user,$plainPassword))
-            $signInForm->addError(new FormError("Incorrect Credentials"));
-           else
-            { 
-                $user = $session->set("user",$user);
-                return $res= $this->redirectToRoute("welcome");
-            }
-        }
-        return $this->render("welcome/signin.html.twig",["sign_in"=>
-        $signInForm->createView()]);
     }
 
       /**
@@ -162,7 +125,6 @@ class WelcomeController extends AbstractController
             try
             {
                 $manager->flush();
-                $user = $session->set("user",$user);
                 return $this->redirectToRoute("welcome");
             }
             catch(ORMException $exc)

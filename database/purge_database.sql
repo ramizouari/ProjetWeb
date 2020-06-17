@@ -1,0 +1,14 @@
+delete from user_followed_book;
+alter table user_followed_book auto_increment = 1;
+delete from user_book;
+alter table user_book auto_increment = 1;
+delete from evaluation;
+alter table evaluation auto_increment = 1;
+delete from publication;
+alter table publication auto_increment = 1;
+delete from exchange;
+alter table exchange auto_increment = 1;
+delete from book;
+alter table book auto_increment = 1;
+delete from user;
+alter table user auto_increment = 1;

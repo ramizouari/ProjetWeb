@@ -40,6 +40,21 @@ class Book
      */
     private $users;
 
+    /**
+     * @ORM\Column(type="string", length=64, nullable=true)
+     */
+    private $category;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $pages_number;
+
+    /**
+     * @ORM\Column(type="integer", nullable=true)
+     */
+    private $year;
+
     public function __construct()
     {
         $this->users = new ArrayCollection();
@@ -113,4 +128,41 @@ class Book
 
         return $this;
     }
+
+    public function getCategory(): ?string
+    {
+        return $this->category;
+    }
+
+    public function setCategory(?string $category): self
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    public function getPagesNumber(): ?int
+    {
+        return $this->pages_number;
+    }
+
+    public function setPagesNumber(?int $pages_number): self
+    {
+        $this->pages_number = $pages_number;
+
+        return $this;
+    }
+
+    public function getYear(): ?int
+    {
+        return $this->year;
+    }
+
+    public function setYear(?int $year): self
+    {
+        $this->year = $year;
+
+        return $this;
+    }
+
 }
