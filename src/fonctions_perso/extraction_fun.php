@@ -25,4 +25,17 @@ class extraction_fun extends \Twig\Extension\AbstractExtension
 
     }
 
+    function user_Extract($id){
+
+        if(!isset($id)){
+
+            $rep=$this->
+
+            $id="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcR3gLrrUG0QXFuHfoFyag3776D_i1zLIavjbPBGUExllzsLrTRA&usqp=CAU";
+        }
+        return $id;
+
+    }
+
+
 }

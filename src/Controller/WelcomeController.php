@@ -104,45 +104,6 @@ class WelcomeController extends AbstractController
         return $res;
     }
 
-    /**
-     * @Route("/signout", name="signout")
-     */
-    public function signout(SessionInterface $session,Request $request)
-    {
-        $session->clear();
-        return $this->redirectToRoute("welcome");
-    }
-
-    /**
-     * @Route("/signin", name="signin")
-     */
-    public function signin(SessionInterface $session,Request $request)
-    {
-        $user = $this->getUser();
-
-        if($user)
-            return $this->redirectToRoute("success");
-        $signInForm= $this->createForm (SignInType::class,$user);
-        $signInForm->handleRequest($request);
-      if($signInForm->isSubmitted())
-        {
-            $user =$signInForm->getData();
-            $plainPassword=$user->getPlainPassword();
-            $user->eraseCredentials();
-            $userRepo = $this->getDoctrine()->getRepository(User::class);
-           $user=$userRepo->findOneBy(["email"=>$user->getEmail()]);
-           if(!$user || !$this->passwordEncoder->isPasswordValid($user,$plainPassword))
-            $signInForm->addError(new FormError("Incorrect Credentials"));
-           else
-            { 
-                $user = $session->set("user",$user);
-                return $res= $this->redirectToRoute("welcome");
-            }
-        }
-        return $this->render("welcome/signin.html.twig",["sign_in"=>
-        $signInForm->createView()]);
-    }
-
       /**
      * @Route("/signup", name="signup")
      */
@@ -164,7 +125,6 @@ class WelcomeController extends AbstractController
             try
             {
                 $manager->flush();
-                $user = $session->set("user",$user);
                 return $this->redirectToRoute("welcome");
             }
             catch(ORMException $exc)
@@ -205,6 +165,7 @@ class WelcomeController extends AbstractController
     {
         throw new \LogicException('This method can be blank - it will be intercepted by the logout key on your firewall.');
     }
+
 
     /**
      * @Route("/mybooks", name="user_books")

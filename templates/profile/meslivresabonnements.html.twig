@@ -1,0 +1,58 @@
+{% extends "profile/index.html.twig" %}
+
+
+
+
+{% block body %}
+
+{{ parent() }}
+
+
+
+    {% for livre in meslivres   %}
+
+         {%   if meslivres == null %}
+
+           <h1> il n'ya pas des livres</h1>
+
+        {% endif %}
+
+        <div class="float-left " style="margin-left:10px">
+
+        <a href="{{ path('livre',{'bookId':livre.id}) }}">
+
+            <div style="width:250px" class="card float-left">
+
+                <div class="card-body"> <img style="width: 200px;height: 270px" class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+
+                </div>
+
+                <div class="card-header " style="margin-bottom: 0px">
+                    <h5 class="card-title text-center">{{  livre.title}}</h5>
+
+                </div>
+            </div>
+         </a>
+
+        </div>
+{% endfor %}
+
+
+    <nav aria-label="Page navigation example " style="position: absolute; bottom:-600px ;left: 700px">
+    <ul class="pagination">
+
+
+
+        <li class="page-item"><a class="page-link" href="{{ url('livres_abonnements',{"page": page-1 })  }}">Previous</a></li>
+
+        {% for i in 1 .. nbpages %}
+            <li class="page-item"><a class="page-link" href="{{ url('livres_abonnements',{"page":i}) }}"> {{ i }} </a></li>
+        {% endfor %}
+
+        <li class="page-item"><a class="page-link" href="{{ url('livres_abonnements',{"page": page+1 }) }}">Next</a></li>
+    </ul>
+
+
+
+
+{% endblock %}

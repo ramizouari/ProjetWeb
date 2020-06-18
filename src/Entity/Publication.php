@@ -16,22 +16,28 @@ class Publication
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=500000, nullable=true)
+ /**
+     * @ORM\Column(type="int")
+     * @ORM\JoinColumn(nullable=false)
      */
-    private $text;
-
-    /**
+    private $userId;
+     /**
+  * @ORM\Column(type="int")
+     * @ORM\JoinColumn(nullable=false)
+     */
+    private $bookId;
+     /**
      * @ORM\Column(type="datetime")
      */
     private $date;
 
     /**
-     * @ORM\ManyToOne(targetEntity=User::class, inversedBy="publications")
-     * @ORM\JoinColumn(nullable=false)
+     * @ORM\Column(type="text", nullable=true)
      */
-    private $proprietaire;
+    private $text;
+
+   
+   
 
     public function getId(): ?int
     {
@@ -62,14 +68,14 @@ class Publication
         return $this;
     }
 
-    public function getProprietaire(): ?User
+    public function getUserId(): ?User
     {
-        return $this->proprietaire;
+        return $this->userId;
     }
 
-    public function setProprietaire(?User $proprietaire): self
+    public function setUserId(?User $userId): self
     {
-        $this->proprietaire = $proprietaire;
+        $this->userId = $userId;
 
         return $this;
     }
