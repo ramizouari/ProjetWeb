@@ -7,6 +7,7 @@
 
 {{ parent() }}
 
+<div>
 
 <div class="float-lg-none">
     {% for livre in meslivres   %}
@@ -43,7 +44,8 @@
 
 </div>
 
-    <nav aria-label="Page navigation example " style="position: absolute; bottom:-600px ;left: 700px">
+<nav aria-label="Page navigation example " style=" position: relative; bottom:-1150px;
+    left:-600px;">
         <ul class="pagination">
 
 
@@ -57,5 +59,8 @@
             <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page+1 }) }}">Next</a></li>
         </ul>
 
+
+</nav>
+</div>
 
 {% endblock %}

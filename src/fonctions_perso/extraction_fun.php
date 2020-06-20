@@ -27,6 +27,9 @@ class extraction_fun extends \Twig\Extension\AbstractExtension
 
     function user_Extract($id){
 
+
+
+
         if(!isset($id)){
 
             $rep=$this->

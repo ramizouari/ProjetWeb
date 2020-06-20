@@ -1,0 +1,182 @@
+
+#body{padding-top: 80px; padding-bottom: 200px;}
+
+
+.containerconfig { 
+width : 1000px ;
+margin :auto ;
+ }
+
+ .navbarconfig { 
+   position: fixed; /* fixer la barre */
+ width: 100%;
+ background-color: #252F31 ;
+ color : #FFF ;
+ overflow : hidden;
+/* height: 80px; */
+
+ }
+ .navbarconfig h2 {font-family: Arial; float :left; text-transform: uppercase ;}
+ .navbarconfig h2 span { color : red;}
+ .navbarconfig ul {
+	 list-style :none ;
+	 padding-left :0px;
+	 overflow :hidden ;
+	 float : right;
+
+ }
+
+ .navbarconfig li {
+  color: red;
+	 float :left ; padding : 10px ; 
+   font-size: 1.3em;
+
+ }	 
+ 
+#chercherlivre {
+width: 200px;
+}
+
+ .navbarconfig a{
+  color: AliceBlue;
+  font-family:"Comic Sans MS";
+ }
+
+
+
+#page-container {
+    position: relative;
+    min-height: 100vh;
+}
+
+#content-wrap {
+    padding-bottom: 2.5rem;    /* Footer height */
+}
+
+footer {
+    clear: both;
+    position: relative;
+    height: 100px;
+    margin-top: -200px;          /* Footer height */
+}
+
+
+
+.footer-distributed{
+  background-color: rgba(168,169,155,0.35) ;
+  box-shadow: 0 1px 1px 0;
+  box-sizing: border-box;
+  width: 100%;
+  text-align: left;
+  font: bold 12px Arial;
+ 
+  padding: 10px 15px;
+  margin-top: 20px;
+}
+ 
+.footer-distributed .footer-left,
+.footer-distributed .footer-center,
+.footer-distributed .footer-right{
+  display: inline-block;
+  vertical-align: top;
+}
+ 
+.footer-distributed .footer-left{
+  width: 40%;
+}
+ 
+.footer-distributed h2{
+  text-transform: uppercase ;
+  font-family: Arial;
+  color:  #ffffff;
+  margin: 0;
+}
+ 
+.footer-distributed h2 span{
+  color:  red;
+}
+ 
+ 
+
+ 
+.footer-distributed .footer-company-name{
+  color:  #8f9296;
+  font-size: 14px;
+  font-weight: normal;
+  margin: 0;
+}
+ 
+ 
+.footer-distributed .footer-center{
+  width: 35%;
+}
+ 
+
+.footer-distributed .footer-center p{
+  display: inline-block;
+  color: rgba(35,169,152,0.35);
+  vertical-align: middle;
+  margin:0;
+}
+
+
+
+.footer-distributed .footer-center p span{
+  display:block;
+  font-weight: normal;
+  font-size:14px;
+  line-height:1;
+}
+ 
+
+.footer-distributed .footer-right{
+  width: 20%;
+}
+ 
+.footer-distributed .footer-about{
+  line-height: 20px;
+  color:#0b51c5;
+  font-size: 13px;
+  font-weight: normal;
+  margin: 0;
+}
+ 
+
+ 
+ 
+@media (max-width: 880px) {
+ 
+  .footer-distributed{
+    font: bold 14px sans-serif;
+  
+  }
+ 
+  .footer-distributed .footer-left,
+  .footer-distributed .footer-center,
+  .footer-distributed .footer-right{
+    display: block;
+    width: 100%;
+    margin-bottom: 40px;
+    text-align: center;
+  }
+ 
+
+}
+
+ .footer-distributed  ul {
+list-style: none;
+ }
+
+.footer-distributed ul a {
+color : grey ;
+font-family:"Times New Roman";
+font-size: 15px;
+text-decoration: none;
+}
+
+
+#formeditprofil{
+    background-color: #adb5bd;
+    border: 2px groove;
+}
+
