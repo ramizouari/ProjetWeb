@@ -2,48 +2,6 @@
 #body{padding-top: 80px; padding-bottom: 200px;}
 
 
-.containerconfig { 
-width : 1000px ;
-margin :auto ;
- }
-
- .navbarconfig { 
-   position: fixed; /* fixer la barre */
- width: 100%;
- background-color: #252F31 ;
- color : #FFF ;
- overflow : hidden;
-/* height: 80px; */
-
- }
- .navbarconfig h2 {font-family: Arial; float :left; text-transform: uppercase ;}
- .navbarconfig h2 span { color : red;}
- .navbarconfig ul {
-	 list-style :none ;
-	 padding-left :0px;
-	 overflow :hidden ;
-	 float : right;
-
- }
-
- .navbarconfig li {
-  color: red;
-	 float :left ; padding : 10px ; 
-   font-size: 1.3em;
-
- }	 
- 
-#chercherlivre {
-width: 200px;
-}
-
- .navbarconfig a{
-  color: AliceBlue;
-  font-family:"Comic Sans MS";
- }
-
-
-
 #page-container {
     position: relative;
     min-height: 100vh;
@@ -98,7 +56,6 @@ footer {
  
  
 
- 
 .footer-distributed .footer-company-name{
   color:  #8f9296;
   font-size: 14px;
@@ -140,7 +97,6 @@ footer {
   font-weight: normal;
   margin: 0;
 }
- 
 
  
  
@@ -173,7 +129,6 @@ font-family:"Times New Roman";
 font-size: 15px;
 text-decoration: none;
 }
-
 
 #formeditprofil{
     background-color: #adb5bd;

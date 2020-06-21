@@ -3,18 +3,14 @@
     <head>
         <meta charset="UTF-8">
         <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('style1.css')}}">
+        <link rel="stylesheet" href="{{ asset('base-footer.css')}}">
         
         <title>{% block title %}Welcome!{% endblock %}</title>
         {% block stylesheets %}
 
             <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
-            <link rel="stylesheet" href="{{ asset('base_syle.css') }}">
             <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
             <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
-
-
-
 
         {% endblock %}
     </head>
@@ -28,7 +24,6 @@
             <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
         </form>
     </nav>
-
 
     <div id="page-container">
         <div id="conten-wrap">

@@ -61,8 +61,15 @@ class LivreController extends AbstractController
                 $user->note=$eval->getNote();
             return $user;
         },$followedBookRepo->findBy(["bookId"=>$book->getId()]));
+
+        $semilaires=$bookRepo->findBy(["category"=>$book->getCategory()]);
+
+
+        $tab=array_slice($semilaires,0,8);
+
+
         return $this->render('livre/index.html.twig', ["book" => $book,"note"=>$note,
-            "exchangesNumber"=>"Not supported Yet" , "users"=>$owners,"followers"=>$followers]);
+            "exchangesNumber"=>"Not supported Yet" , "users"=>$owners,"followers"=>$followers,"semilaires"=>$tab]);
     }
 
     ///**
