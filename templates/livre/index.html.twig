@@ -15,10 +15,35 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm col-md-3">
-                <div class="text-center">
-                  <img  id="b"  class="rounded img-responsive float-center img-thumbnail"
-         src="{{ extract(null) }}"
+                <div class="container">
+                  <img  id="b"  class="row rounded img-responsive float-center img-thumbnail"
+         src="{{ asset('book_photo/'~book.headshot) }}"
          alt=" image missing" style="vertical-align:middle">
+                    <div class="row">
+                        <a class="col-5 btn btn-primary btn-sm" role="button" href=
+                        "{{ path('book_add') }}"
+                         {% if isOwned %}
+                        disabled
+                        {% endif %}
+                        >
+                        <small>{% if isOwned %}
+                        Owned
+                        {% else %}
+                        Add Book
+                        {% endif %}</small>
+                        </a>
+                        <a class="col-5 btn btn-primary btn-sm" role="button" 
+                        {% if isFollowed %}
+                       disabled
+                        {% endif %}
+                        >
+                        <small>{% if isFollowed %}
+                        Followed
+                        {% else %}
+                       Follow Book
+                        {% endif %}</small>
+                        </a>
+                    </div>
                 </div>
             </div>
           
@@ -58,7 +83,7 @@
                 <td> {% if note == null %}
                     {{ "No note Given" }}
                     {% else %}
-                    {{ note }}
+                    {{ note~" average based on "~votersNumber~" reviews" }}
                     {% endif %} </td>
             </tr>
 

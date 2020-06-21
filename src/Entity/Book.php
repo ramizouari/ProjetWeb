@@ -48,12 +48,17 @@ class Book
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
-    private $pages_number;
+    private $pagesNumber;
 
     /**
      * @ORM\Column(type="integer", nullable=true)
      */
     private $year;
+
+   // /**
+   //  * @ORM\Column(type="string", length=255, nullable=true)
+    // */
+    private $photoPath;
 
     public function __construct()
     {
@@ -143,12 +148,12 @@ class Book
 
     public function getPagesNumber(): ?int
     {
-        return $this->pages_number;
+        return $this->pagesNumber;
     }
 
-    public function setPagesNumber(?int $pages_number): self
+    public function setPagesNumber(?int $pagesNumber): self
     {
-        $this->pages_number = $pages_number;
+        $this->pagesNumber = $pagesNumber;
 
         return $this;
     }
@@ -165,4 +170,20 @@ class Book
         return $this;
     }
 
+    public function getPhotoPath(): ?string
+    {
+        return $this->photoPath;
+    }
+
+    public function setPhotoPath(?string $photoPath): self
+    {
+        $this->photoPath = $photoPath;
+
+        return $this;
+    }
+    public function getHeadShot()
+    {
+            $path="book_photo/";
+        return file_exists($path.$this->id)?$this->id:0;  
+    }
 }

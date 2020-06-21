@@ -47,4 +47,14 @@ class BookRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function findByTitleLike(string $value)
+    {
+        return $this->createQueryBuilder('Q')->andWhere("Q.title like :val")->setParameter("val",'%'.$value.'%')
+        ->getQuery()->getResult();
+    }
+    public function findByAuthorLike(string $value)
+    {
+        return $this->createQueryBuilder('Q')->andWhere("Q.author like :val")->setParameter("val",'%'.$value.'%')
+        ->getQuery()->getResult();
+    }
 }

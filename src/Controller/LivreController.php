@@ -11,7 +11,10 @@ use App\Entity\UserFollowedBook;
 use App\Entity\UserBook;
 use App\Entity\Book;
 use App\Entity\Evaluation;
-use App\Entity\Exchange;
+use App\Form\BookFormType;
+use Doctrine\ORM\ORMException;
+use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
+use Symfony\Component\Form\FormError;
 
 class LivreController extends AbstractController
 {
@@ -38,9 +41,12 @@ class LivreController extends AbstractController
         $n=count($evaluations);
         foreach($evaluations as $eval)
             $note+=$eval->getNote();
-        if($n) $note/=$n;
+        if($n) {
+            $note/=$n;
+            $note=round($note,3);
+        }
         else $note=null;
-           $ownedBookRepo=$this->getDoctrine()->getRepository(UserBook::class);
+        $ownedBookRepo=$this->getDoctrine()->getRepository(UserBook::class);
         $userRepo=$this->getDoctrine()->getRepository(User::class);
         $followedBookRepo=$this->getDoctrine()->getRepository(UserFollowedBook::class);
         $owners=array_map(function($T) use ($userRepo,$evalRepo,$bookId)
@@ -61,8 +67,14 @@ class LivreController extends AbstractController
                 $user->note=$eval->getNote();
             return $user;
         },$followedBookRepo->findBy(["bookId"=>$book->getId()]));
+        $isOwned=$ownedBookRepo->findOneBy(["userId"=>$this->getUser()->getId()
+        ,"bookId"=>$book->getId()])!=null;
+        $isFollowed=$followedBookRepo->findOneBy
+        (["userId"=>$this->getUser()->getId(),"bookId"=>$book->getId()])!=null;
         return $this->render('livre/index.html.twig', ["book" => $book,"note"=>$note,
-        "exchangesNumber"=>"Not supported Yet" , "users"=>$owners,"followers"=>$followers]);
+        "exchangesNumber"=>"Not supported Yet" ,"votersNumber"=>$n, 
+        "users"=>$owners,"followers"=>$followers,"isOwned"=>$isOwned,
+        "isFollowed"=>$isFollowed]);
     }
 
     ///**
@@ -85,6 +97,74 @@ class LivreController extends AbstractController
     //    return $this->render("livre/liste.html.twig", ["users"=>$owners,"followers"=>$followers]) ;
 
     //}
+
+    /**
+     * @Route("/livre/add",name="book_add")
+     */
+    public function add(Request $request)
+    {
+        $book=new Book();
+        $addBookForm= $this->createForm (BookFormType::class,$book);
+        $addBookForm->handleRequest($request);
+        if($addBookForm->isSubmitted() && $addBookForm->isValid())
+        {
+            $book =$addBookForm->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($book);
+            try
+            {
+                $manager->flush();
+                return $this->redirectToRoute("welcome");
+            }
+            catch(ORMException $exc)
+            {
+                $addBookForm->addError(new FormError("Error while connecting to database"));
+            }
+            catch(UniqueConstraintViolationException $constraint)
+            {
+                $repo=$manager->getRepository(Book::class);
+                $repo->findOneBy(["title"=>$book->getTitle(),"author"=>$book->getAuthor()]);
+                $manager->clear();
+                $addBookForm->addError(new FormError("Book already exists"));
+
+            }
+        }
+        return $this->render("livre/add.html.twig",["book_form"=>$addBookForm->createView()]);
+    }
+
+    /**
+     * @Route("/livre/{bookId}",name="book_add_collection")
+     */
+    public function add_collection(Request $request,$bookId)
+    {
+        $book=new Book();
+        $addBookForm= $this->createForm (BookFormType::class,$book);
+        $addBookForm->handleRequest($request);
+        if($addBookForm->isSubmitted() && $addBookForm->isValid())
+        {
+            $book =$addBookForm->getData();
+            $manager = $this->getDoctrine()->getManager();
+            $manager->persist($book);
+            try
+            {
+                $manager->flush();
+                return $this->redirectToRoute("welcome");
+            }
+            catch(ORMException $exc)
+            {
+                $addBookForm->addError(new FormError("Error while connecting to database"));
+            }
+            catch(UniqueConstraintViolationException $constraint)
+            {
+                $repo=$manager->getRepository(Book::class);
+                $repo->findOneBy(["title"=>$book->getTitle(),"author"=>$book->getAuthor()]);
+                $manager->clear();
+                $addBookForm->addError(new FormError("Book already exists"));
+
+            }
+        }
+        return $this->render("livre/add.html.twig",["book_form"=>$addBookForm->createView()]);
+    }
 }
 
 

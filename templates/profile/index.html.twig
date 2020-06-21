@@ -31,7 +31,7 @@
                     <br>
 
                     <img class="img-thumbnail img-circle" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
-                         src="{{ extract(null) }}"
+                         src="{{ asset('user_photo/'~user.getHeadShot())}}"
                          style="height: 168px; width: 168px;">
                     <li class="active">
                         <a href="{{ url('profile') }}" class="active" ><i class="fa fa-home" aria-hidden="true"><br>journal</i></a>

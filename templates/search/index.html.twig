@@ -1,0 +1,72 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello LivreController!{% endblock %}
+
+{% block stylesheets %}
+
+    {{ parent() }}
+
+
+{% endblock %}
+
+{% block body %}
+
+    {{ parent() }}
+    <div class="container-fluid">
+         <div class="row">
+             <h2 class="col-sm col-md-3 text-center">By Title</h2>
+            <div class="container col-md">
+                <div class="row">
+                    {% if booksByTitle is not empty %}
+                    {% for book in booksByTitle %}
+                    <div class="col-sm-3 col-lg-2 mb-4 mr-1 card" style="width: 9rem;">
+                        <img  class="card-img-top" src="book_photo/0" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.author }}
+                                <br>{{ book.year }}
+                            </p>
+                            <br><br>
+                        </div>
+                        <a href="{{ path('livre',{'bookId' : book.id}) }}" style="position: absolute;
+  bottom: 0;" class="btn btn-primary">View Details</a>
+                    </div>
+                    {% endfor %}
+                     {% else %}
+                    <h4>No result</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+        <hr>
+        <div class="row">
+             <h2 class="col-sm col-md-3 text-center">By Author</h2>
+            <div class="container col-md">
+                <div class="row">
+                    {% if booksByAuthor is not empty %}
+                    {% for book in booksByAuthor %}
+                    <div class="col-sm-3 col-lg-2 mb-4 mr-1 card" style="width: 9rem;">
+                        <img  class="card-img-top" src="book_photo/0" alt="Card image cap">
+                        <div class="card-body">
+                            <h5 class="card-title">{{ book.title }}</h5>
+                            <p class="card-text">{{ book.author }}
+                                <br>{{ book.year }}
+                            </p>
+                            <br><br>
+                        </div>
+                        <a href="{{ path('livre',{'bookId' : book.id}) }}" style="position: absolute;
+  bottom: 0;" class="btn btn-primary">View Details</a>
+                    </div>
+                    {% endfor %}
+                    {% else %}
+                    <h4>No result</h4>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+{% block javascripts %}
+{{ parent() }}
+
+{% endblock %}
