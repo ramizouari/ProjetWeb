@@ -1,0 +1,51 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}
+    settings
+{% endblock %}
+
+        {% block stylesheets %}
+            <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
+            <link rel="stylesheet" href="{{ asset('base_style.css') }}">
+            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
+            <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
+
+            <link rel="stylesheet" href="{{ asset('pub.css')}}">
+
+        {% endblock %}
+
+{%  block body %}
+
+    {% for pub in pubs %}
+        <div class="pub">
+            <div class="prop">
+              azeraezr
+              {# {{ user[loop.index0].getUsername }}
+            <span>
+             {{ pub.getDate }}
+            </span>
+              #}
+
+            </div>
+
+            <div class="contenupub">
+                {# {{pub.getText}} #}
+                hello afhfaghkfarzhkgncrzgergergfrazgcbzegnzrejkg
+                azgkhrechnrigbhgbzhjfzhbazgkhrechnrigbhgbz
+                <hr>
+                <a  href="#"><i class="fa fa-heart" aria-hidden="true"> j'aime</i></a>
+                <a  href="#"><i class="fa fa-comments" aria-hidden="true"> commenter</i></a>
+                <a href="#"> <i class="fa fa-exclamation-triangle" aria-hidden="true"> signaler</i></a>
+            </div>
+         </div>
+        <div class="comments">
+
+        </div>
+    {% endfor %}
+
+    {% block javascripts %}
+    <script src="{{ asset('javascript/filaccueil.js') }}"></script>
+    {% endblock %}
+
+{% endblock %}
+

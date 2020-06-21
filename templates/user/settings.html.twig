@@ -1,0 +1,32 @@
+{% extends 'base2.html.twig' %}
+{% block title %}
+    settings
+{% endblock %}
+
+{% block body %}
+    <br>
+    <table class="table table-hover">
+        <tr>
+            <th scope="row">Username</th>
+            <td>{{user.getUsername()}}</td>
+        </tr>
+
+        <tr>
+            <th scope="row">firstname</th>
+            <td>{{ user.getFirstName }}</td>
+        </tr>
+        <tr>
+            <th scope="row">lastname</th>
+            <td>{{ user.getLastName }}</td>
+        </tr>
+        <tr>
+            <th scope="row">e-mail</th>
+            <td>{{ user.getEmail }}</td>
+        </tr>
+        <tr>
+            <th scope="row">mot de passe</th>
+            <td>**********</td>
+        </tr>
+    </table>
+    <a class="btn btn-primary" href="/modifierprofil" role="button">modifier compte</a>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% extends 'base2.html.twig' %}
+
+{% block title %}
+    éditer profil
+{% endblock %}
+
+
+{% block body %}
+    <h3 class="h3">Mise à jour du profil</h3>
+    <fieldset id="formeditprofil">
+        {{ form_start(form,{"attr":{"class":"form-group"}}) }}
+        {{ form_errors(form) }}
+
+        <div class="form-group">
+            {{form_label(form.username,"username")}}
+            {{ form_widget(form.username,{"attr":{"class":"form-control"}}) }}
+        </div>
+        <div class="form-group">
+            {{form_label(form.email,"E-mail")}}
+            {{ form_widget(form.email,{"attr":{"class":"form-control"}}) }}
+        </div>
+        <div class="form-group">
+            {{form_label(form.firstName,"First-Name")}}
+            {{ form_widget(form.firstName,{"attr":{"class":"form-control"}}) }}
+        </div>
+        <div class="form-group">
+            {{form_label(form.lastName,"Last-Name")}}
+            {{ form_widget(form.lastName,{"attr":{"class":"form-control"}}) }}
+        </div>
+        <div class="form-group">
+            {{form_label(form.passwordHash,"password")}}
+            {{ form_widget(form.passwordHash,{"attr":{"class":"form-control"}}) }}
+        </div>
+        {{form_end(form)}}
+    </fieldset>
+{% endblock %}
