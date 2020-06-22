@@ -21,7 +21,10 @@ use Symfony\Component\Form\FormError;
 class LivreController extends AbstractController
 {
     /**
-     * @Route("/livre/{bookId}", name="livre")
+     * @Route("/livre/{bookId}", name="livre",
+     * requirements={
+     * "bookId" : "\d+"
+     * })
      * @param Request $request
      * @return Response
      */
@@ -131,7 +134,9 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/livre/{bookId}/add",name="book_add")
+     * @Route("/livre/{bookId}/add",name="book_add",requirements={"bookId"="^\d+$"})
+     * @param Request $request
+     * @return Response
      */
     public function addBook(Request $request,$bookId)
     {
@@ -158,7 +163,7 @@ class LivreController extends AbstractController
         }
 
     /**
-     * @Route("/livre/{bookId}/remove",name="book_remove")
+     * @Route("/livre/{bookId}/remove",name="book_remove",requirements={"bookId"="^\d+$"})
      */
     public function removeBook(Request $request,$bookId)
     {
@@ -185,7 +190,7 @@ class LivreController extends AbstractController
     }
 
      /**
-     * @Route("/livre/{bookId}/follow",name="book_follow")
+     * @Route("/livre/{bookId}/follow",name="book_follow",requirements={"bookId"="^\d+$"})
      */
     public function followBook(Request $request,$bookId)
     {
@@ -212,7 +217,7 @@ class LivreController extends AbstractController
     }
 
     /**
-     * @Route("/livre/{bookId}/unfollow",name="book_unfollow")
+     * @Route("/livre/{bookId}/unfollow",name="book_unfollow",requirements={"bookId"="^\d+$"})
      */
     public function unfollowBook(Request $request,$bookId)
     {
@@ -239,7 +244,7 @@ class LivreController extends AbstractController
     }
 
      /**
-     * @Route("/livre/{bookId}/review/{note}",name="book_review")
+     * @Route("/livre/{bookId}/review/{note}",name="book_review",requirements={"bookId"="^\d+$","note"="^([1-9]|10)$"})
      */
     public function reviewBook(Request $request,$bookId,$note)
     {
