@@ -9,10 +9,11 @@
             <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
             <link rel="stylesheet" href="{{ asset('node_modules/mdbootstrap/css/mdb.css') }}">
                     <link rel="stylesheet" 
-            href="{{ asset('node_modules/mdbootstrap/addons/datatables.min.css') }}">
+            href="{{ asset('node_modules/mdbootstrap/css/addons/datatables.min.css') }}">
             <link rel="stylesheet" 
             href="{{ asset('node_modules/mdbootstrap/css/addons/datatables-select.min.css') }}">
-
+            <link rel="stylesheet" 
+            href="{{ asset('footer.css') }}">
 
 
         {% endblock %}
@@ -27,8 +28,10 @@
                     <div class="container-fluid">
                         <div class="navbar-brand">
                             <a class="navbar-brand" href="#">Book Exchanger</a>
+                            
                         </div>
-
+                        <object data="{{asset('book.svg')}}" width="50" height="50" type="image/svg+xml">
+</object>
 
 
                         <form class="form-inline" action="{{ path('search') }}">
@@ -70,6 +73,25 @@
                 </nav>
 
             </div>
+           
+        {% endblock %}
+        {% block footer %}
+        <!-- Footer -->
+<footer class="page-footer font-small grey darken-1">
+
+
+  <!-- Copyright -->
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href=""> Book Exchanger</a>
+    <hr>
+   <object data="{{asset('book.svg')}}" width="20" height="20" type="image/svg+xml">
+</object> Book Exchanger Icon is made by
+         <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+  </div>
+  <!-- Copyright -->
+
+</footer>
+<!-- Footer -->
         {% endblock %}
         {% block javascripts %}
         <script src="{{ asset('node_modules/jquery/dist/jquery.js') }}">
@@ -82,7 +104,7 @@
         </script>
           <script src="{{ asset('node_modules/mdbootstrap/js/addons/datatables.min.js') }}">
         </script>
-         <script src="{{ asset('node_modules/mdbootstrap/js/addons/datables-select.min.js') }}">
+         <script src="{{ asset('node_modules/mdbootstrap/js/addons/datatables-select.min.js') }}">
         </script>
         <script src="{{ asset('node_modules/ajax/lib/ajax.js') }}">
         </script>

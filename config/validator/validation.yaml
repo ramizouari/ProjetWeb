@@ -3,4 +3,4 @@ App\Entity\User:
         plainPassword:
             - Regex: 
                 pattern: '/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).{8,}$/'
-                message: The password must contain at least 8 characters, one upper case character, one down case caracter and a digit
+                message: The password must contain at least 8 characters, 1 uppercase character, 1 lowercase caracter and 1 digit
