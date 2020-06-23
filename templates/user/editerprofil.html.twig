@@ -28,6 +28,10 @@
             {{ form_widget(form.lastName,{"attr":{"class":"form-control"}}) }}
         </div>
         <div class="form-group">
+            {{form_label(form.phoneNumber,"phoneNumber")}}
+            {{ form_widget(form.phoneNumber,{"attr":{"class":"form-control"}}) }}
+        </div>
+        <div class="form-group">
             {{form_label(form.passwordHash,"password")}}
             {{ form_widget(form.passwordHash,{"attr":{"class":"form-control"}}) }}
         </div>

@@ -29,11 +29,11 @@ class WwController extends AbstractController
     public function settings(SessionInterface $session, Request $request){
         $session->start();
         $user = $session->get("user");
-        if (!$user){
-            return $this->redirectToRoute('/signin');
+        if (!$this->getUser()){
+            return $this->redirectToRoute('app_login');
         }
         else {
-            return $this->render('user/settings.html.twig',['user'=>$user]);
+            return $this->render('user/settings.html.twig',['user'=>$this->getUser()]);
         }
     }
 
@@ -43,8 +43,8 @@ class WwController extends AbstractController
     public function modifierprofil(SessionInterface $session){
         $session->start();
         $user = $session->get("user");
-        if (!$user){
-            return $this->redirectToRoute('signin');
+        if (!$this->getUser()){
+            return $this->redirectToRoute('app_login');
         }
         else {
             $form=$this->createForm(UserType::class,$user, [
@@ -60,8 +60,8 @@ class WwController extends AbstractController
     public function setprofil(SessionInterface $session,Request $request){
         $session->start();
         $user = $session->get("user");
-        if (!$user){
-            return $this->redirectToRoute('signin');
+        if (!$this->getUser()){
+            return $this->redirectToRoute('app_login');
         }
         else {
             $form=$this->createForm(UserType::class);
@@ -69,13 +69,13 @@ class WwController extends AbstractController
 
             if ($form->isSubmitted() && $form->isValid()) {
                 $us =$request->request->get("user");
-                $a= $form->getData();
                 $EntityManager =$this->getDoctrine()->getManager();
-                $theuser = $EntityManager->getRepository(User::class)->findOneBy(array('username' => $a->getusername()));
+                $theuser = $EntityManager->getRepository(User::class)->findOneBy(array('username' => $this->getUser()->getusername()));
                 $theuser->setUsername($us["username"]);
                 $theuser->setEmail($us["email"]);
                 $theuser->setFirstName($us["firstName"]);
                 $theuser->setLastName($us["lastName"]);
+                $theuser->setPhoneNumber($us["phoneNumber"]);
                 $theuser->setPasswordHash($this->passwordEncoder->encodePassword
                 ($a,$us["passwordHash"]));
 
