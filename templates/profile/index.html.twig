@@ -6,7 +6,7 @@
 
 {{ parent() }}
 
-
+    <link rel="stylesheet" href="{{ asset('profile_style.css') }}">
 
 {%  endblock %}
 
@@ -15,16 +15,16 @@
 
     {{ parent() }}
 
-    <div class="float-left">
+    <div class="float-left" >
 
-        <div class="wrapper bg-dark " style="width: 300px ;height:800px;">
+        <div class="wrapper bg-dark  " style="width: 300px ;height:1230px;">
             <!-- Sidebar -->
             <nav id="sidebar">
                 <div class="sidebar-header text-white">
                     <h3>book exchanger</h3>
                 </div>
 
-                <ul class="list-unstyled components text-light">
+                <ul class="list-unstyled components text-light" >
                     <br>
                     <br>
                     <p>this your profile {{ user.getUserName() }} </p>
@@ -33,41 +33,45 @@
                     <img class="img-thumbnail img-circle" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
                          src="{{ asset('user_photo/'~user.getHeadShot())}}"
                          style="height: 168px; width: 168px;">
+
                     <li class="active">
-                        <a href="{{ url('profile') }}" class="active" ><i class="fa fa-home" aria-hidden="true"><br>journal</i></a>
+                        <a href="{{ url('profile') }}"  class="active item "  ></i><br>journal</a>
                     </li>
-                    <li>
-                        <a href="#">About</a>
-                    </li>
-                    <li>
-                        <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false"
-                           class="dropdown-toggle">Pages</a>
+                    <li >
+                        <a href="{{ url('echanges') }}"  class="item"> mes echanges </a>
+                        <a href="#pageSubmenu" data-toggle="collapse"  aria-expanded="false"
+                           class="dropdown-toggle item"></a>
                         <ul class="collapse list-unstyled" id="pageSubmenu">
                             <li>
-                                <a href="#">Page 1</a>
+                                <a href="#" class="item" > waiting </a>
                             </li>
                             <li>
-                                <a href="#">Page 2</a>
+                                <a href="#" class="item"> Accepted</a>
                             </li>
                             <li>
-                                <a href="#">Page 3</a>
+                                <a href="#" class="item">Refused</a>
                             </li>
                         </ul>
                     </li>
+
                     <li>
-                        <a href="#">mes echanges</a>
+                        <a href="{{ url('livres_abonnements') }}"  class="item" >Followed Books</a>
+                    </li>
+
+
+                    <li>
+                        <a href="#" class="item">my subscriptions</a>
                     </li>
 
                     <li>
-                        <a href="#">mes abonnements</a>
+                        <a href="{{ url('meslivres') }}" class="item">My Books</a>
                     </li>
 
                     <li>
-                        <a href="{{ url('meslivres') }}">mes livres</a>
-                    </li>
-
+                        <a href="#" class="item">Settings</a> </li>
                     <li>
-                        <a href="#">Settings</a>r
+                        <a href="#" class="item">About</a>
+                    </li>
                 </ul>
             </nav>
 

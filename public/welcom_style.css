@@ -1,0 +1,10 @@
+
+.img-txt {
+    position: absolute;
+    bottom: 10px;
+    left: 30px;
+    width: 150px;
+    color: #b79f98;
+    font-size: 40px;
+    font-style: oblique ;
+}

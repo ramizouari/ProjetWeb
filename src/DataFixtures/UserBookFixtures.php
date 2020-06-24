@@ -13,12 +13,16 @@ class UserBookFixtures extends Fixture implements DependentFixtureInterface
     public function load(ObjectManager $manager)
     {
         $faker=Factory::create();
+
+
         $T=array();
         for($i=0;$i<200;$i++)
             for($j=0;$j<200;$j++)
                 array_push($T,[$i+1,$j+1]);
        shuffle($T);
-        for($i=0;$i<2000;$i++)
+
+
+       for($i=0;$i<2000;$i++)
         {
             $userBook=new UserBook();
             $userBook->setUserId($T[$i][0]);

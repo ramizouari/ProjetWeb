@@ -40,11 +40,20 @@ class LivreController extends AbstractController
         //$exchangesRepo = $this->getDoctrine()->getRepository(Exchange::class);
         //$exchanges = $exchangesRepo->findBy(["bookId"=>$book->getId()]);
         //$exchangesNumber=count($exchanges);
+<<<<<<< HEAD
         $note=$evalRepo->getNoteOrZero($bookId,$this->getUser()->getId());
         $averageNote=0;//average note of all voting users
         $T=$evalRepo->getAverageNote($bookId);
         $averageNote=$T[0];
         $n=$T[1];
+=======
+        $note=0;
+        $n=count($evaluations);
+        foreach($evaluations as $eval)
+            $note+=$eval->getNote();
+        if($n) $note/=$n;
+        else $note=null;
+>>>>>>> 9bfce1ec2ee1933eb1ab4d3a1d44d5f1b8902aff
         $ownedBookRepo=$this->getDoctrine()->getRepository(UserBook::class);
         $userRepo=$this->getDoctrine()->getRepository(User::class);
         $followedBookRepo=$this->getDoctrine()->getRepository(UserFollowedBook::class);
@@ -67,6 +76,7 @@ class LivreController extends AbstractController
                 $user->note=$eval->getNote();
             return $user;
         },$followedBookRepo->findBy(["bookId"=>$book->getId()]));
+<<<<<<< HEAD
         $isOwned=$ownedBookRepo->findOneBy(["userId"=>$this->getUser()->getId()
         ,"bookId"=>$book->getId()])!=null;
         $isFollowed=$followedBookRepo->findOneBy
@@ -75,11 +85,15 @@ class LivreController extends AbstractController
         "averageNote"=>$averageNote, "exchangesNumber"=>"Not supported Yet" ,
         "votersNumber"=>$n, "users"=>$owners,"followers"=>$followers,
         "isOwned"=>$isOwned,"isFollowed"=>$isFollowed,"note"=>$note]);
+=======
+        return $this->render('livre/index.html.twig', ["book" => $book,"note"=>$note,
+            "exchangesNumber"=>"Not supported Yet" , "users"=>$owners,"followers"=>$followers]);
+>>>>>>> 9bfce1ec2ee1933eb1ab4d3a1d44d5f1b8902aff
     }
 
     ///**
     // * @Route("/liste",name="liste")
-     //*/
+    //*/
 
     //public function lister($book){
 
@@ -89,7 +103,7 @@ class LivreController extends AbstractController
     //    $owners=array_map(function($T) use ($userRepo)
     //    {
     //        return $userRepo->find($T->getUserId());
-     //   },$ownedBookRepo->findBy(["bookId"=>$book->getId()]));
+    //   },$ownedBookRepo->findBy(["bookId"=>$book->getId()]));
     //    $followers=array_map(function($T) use ($userRepo)
     //    {
     //        return $userRepo->find($T->getUserId());
@@ -97,6 +111,7 @@ class LivreController extends AbstractController
     //    return $this->render("livre/liste.html.twig", ["users"=>$owners,"followers"=>$followers]) ;
 
     //}
+<<<<<<< HEAD
 
     /**
      * @Route("/livre/create",name="book_create")
@@ -274,3 +289,6 @@ class LivreController extends AbstractController
 
 
 
+=======
+}
+>>>>>>> 9bfce1ec2ee1933eb1ab4d3a1d44d5f1b8902aff
