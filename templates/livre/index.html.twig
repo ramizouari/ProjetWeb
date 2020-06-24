@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LivreController!{% endblock %}
+{% block title %}{{book.title}}{% endblock %}
 
 {% block stylesheets %}
 
@@ -384,7 +384,7 @@
            star.classList.add("fa-star-o");
        }
        route = "{{ path('book_review', {'bookId':book.id ,'note': "1" }) }}";
-        route = route.replace("1", note);
+        route = route.replace(new RegExp('1$'), note);
         $.ajax({
             type: "POST",
             url: route,

@@ -22,7 +22,8 @@ class SearchController extends AbstractController
         $titleResults=$bookRepo->findByTitleLike($keyword);
         return $this->render('search/index.html.twig', [
             'booksByTitle' => $titleResults,
-            'booksByAuthor'=> $authorResults
+            'booksByAuthor'=> $authorResults,
+            'keyword'=>$keyword
         ]);
     }
 }

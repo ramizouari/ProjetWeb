@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LivreController!{% endblock %}
+{% block title %}{{keyword }} - search{% endblock %}
 
 {% block stylesheets %}
 
@@ -20,7 +20,7 @@
                     {% if booksByTitle is not empty %}
                     {% for book in booksByTitle %}
                     <div class="col-sm-3 col-lg-2 mb-4 mr-1 card" style="width: 9rem;">
-                        <img  class="card-img-top" src="book_photo/0" alt="Card image cap">
+                        <img  class="card-img-top" src="{{ asset('book_photo/'~book.headshot) }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ book.title }}</h5>
                             <p class="card-text">{{ book.author }}
@@ -46,7 +46,7 @@
                     {% if booksByAuthor is not empty %}
                     {% for book in booksByAuthor %}
                     <div class="col-sm-3 col-lg-2 mb-4 mr-1 card" style="width: 9rem;">
-                        <img  class="card-img-top" src="book_photo/0" alt="Card image cap">
+                        <img  class="card-img-top" src="{{ asset('book_photo/'~book.headshot) }}" alt="Card image cap">
                         <div class="card-body">
                             <h5 class="card-title">{{ book.title }}</h5>
                             <p class="card-text">{{ book.author }}

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello ProfileController!{% endblock %}
+{% block title %}{{app.user.firstName~' '~app.user.lastName}}{% endblock %}
 
 {% block stylesheets %}
 

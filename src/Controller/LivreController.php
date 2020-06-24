@@ -15,7 +15,6 @@ use App\Entity\Evaluation;
 use App\Form\BookFormType;
 use Doctrine\ORM\ORMInvalidArgumentException;
 use Doctrine\DBAL\Exception\UniqueConstraintViolationException;
-use Symfony\Component\Console\Logger\ConsoleLogger;
 use Symfony\Component\Form\FormError;
 
 class LivreController extends AbstractController
