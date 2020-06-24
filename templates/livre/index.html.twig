@@ -4,14 +4,13 @@
 
 {% block stylesheets %}
 
-    {{ parent() }}
+    <link rel="stylesheet" href="{{ asset('livre_style.css') }}">
 
 
 {% endblock %}
 
 {% block body %}
 
-    {{ parent() }}
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm col-md-3">
@@ -271,10 +270,11 @@
 =======
 
 
-
+    <h2>Similar books</h2>
 
     <div class="liste_possesseurs float-left">
 
+<<<<<<< HEAD
 
 
 
@@ -303,58 +303,29 @@
         </div>
 
 
+=======
+>>>>>>> origin/souheil
         <div class="card-deck">
 
+            {% for book in semilaires %}
 
-            <a href="https://feta.egybest.rocks/movie/bride-of-scarecrow-2018/?ref=home-bluray" class="movie">
+            <a href="#" class="movie float-left" >
+                <div class="card" >
 
-                <div class="card">
-
-
-
-                    <div class="card-body"> <img style="width: 200px;height: 270px" class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
-
+                    <div class="card-body"> <img class="card-img-top "src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
                     </div>
-
                     <div class="card-header">
-                        <h5 class="card-title text-center">Bride of Scarecrow (2018)</h5>
-
+                        <h5 class="card-title text-center">{{ book.getTitle }}</h5>
                     </div>
-
-
-
-            </a>
-
-
-        </div>
-
-
-
-        <a href="#" class="movie">
-            <div class="card">
-                <div class="card-body"> <img style="width:200px;height: 270px" class="card-img-top" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQZajAIQV-BxQDPl5jrf0Ir3wnJ93kf54P1WbtwnnwNCvPgncJu&usqp=CAU" alt="Card image cap">
-
                 </div>
 
-        </a>
-        <div class="card-header">
-            <h5 class="card-title">The Glorious Seven (2019)</h5>
+            </a>
         </div>
-    </div>
-
-    <a href="https://www.google.com">
-        <div class="card">
-            <div  class="card-body">
-
-                <img style="width: 200px;height: 300px" class="card-img-top" src="https://cdn.shopify.com/s/files/1/0176/9202/products/Sea_Salt_e4f97e1e-08df-4a1a-a42e-fc507db766ea_grande.jpg?v=1586440065" alt="Card image cap">
+        {% endfor %}
+</div>
 
 
-            </div>
-    </a>
-    <div class="card-header">
-        <h5 class="card-title">the book (2020) </h5>
 
-    </div>
     </div>
 
 

@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<<<<<<< HEAD
 <html  lang="fr">
     <head>
         <meta charset="UTF-8">
@@ -16,12 +17,86 @@
             <link rel="stylesheet" 
             href="{{ asset('footer.css') }}">
 
+=======
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Welcome!{% endblock %}</title>
 
-        {% endblock %}
-    </head>
-    <body>
+    <link rel="stylesheet" href="{{ asset('node_modules/datatables/media/css/jquery.dataTables.css') }}">
+    <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
+    <link rel="stylesheet" href="{{ asset('base-footer.css')}}">
+    <!--  <link rel="stylesheet" href="{{ asset('node_modules/mdbootstrap/css/mdb.css') }}">-->
+    <link rel="stylesheet"
+          href="{{ asset('node_modules/mdbootstrap/addons/datatables.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('node_modules/mdbootstrap/css/addons/datatables-select.min.css') }}">
+
+    {% block stylesheets %}
+
+
+    {% endblock %}
+
+
+</head>
+<body style="min-height: 100%; height: 100%">
+<div style="margin-bottom:100px">
+    <nav class="navbar navbar-inverse navbar-expand-lg navbar-light fixed-top bg-light ">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+                <a class="navbar-brand" href="#">Book Exchanger</a>
+            </div>
+            <form class="form-inline">
+                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
+            </form>
+            <ul class="nav navbar-nav">
+                <li class="active mr-lg-2">
+                    <a href="{{ path('acc') }}">
+                        <button class="btn btn-outline-primary">
+
+                            <i class="fa fa-home fa-2x" aria-hidden="true"></i>
+                        </button>
+                    </a></li>
+                <li class="mr-lg-2"><a href="{{ path('profile') }}">
+                        <button class="btn btn-outline-primary">
+                            <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
+                        </button>
+                    </a></li>
+                <li class="mr-lg-2"><a href="#">
+                        <button class="btn btn-outline-primary">
+
+                            <i class="fa fa-book fa-2x" aria-hidden="true"></i></button>
+                    </a>
+                </li>
+                <li class="mr-lg-2">
+                    <button class="btn btn-outline-primary"><i class="fa fa-cog fa-2x" aria-hidden="true"></i></button>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li><a href="{{ path('app_logout') }}">
+                        <button class="btn btn-outline-primary "><i class="fa fa-sign-out fa-2x" aria-hidden="true"></i>
+                        </button>
+                    </a></li>
+            </ul>
+        </div>
+    </nav>
+
+
+
+
+
+
+</div>
+
+<div id="page-container">
+    <div id="conten-wrap">
+>>>>>>> origin/souheil
+
         {% block body %}
 
+<<<<<<< HEAD
             <div style="margin-bottom:80px">
 
                 <nav  class="navbar navbar-inverse navbar-expand navbar-light fixed-top bg-light ">
@@ -77,13 +152,61 @@
 
                         <ul class="nav navbar-nav navbar-right">
                             <li><a href="{{ path('app_logout') }}"> <i class="fa fa-sign-out fa-2x" aria-hidden="true"></i> </a></li>
-
-                        </ul>
-                    </div>
+=======
 
 
-                </nav>
+        {% endblock %}
+>>>>>>> origin/souheil
 
+    </div>
+</div>
+
+<footer class="footer-distributed">
+    <div class="footer-left">
+        <h2> book <span>exchanger</span></h2>
+        <br>
+        <a href="">report bug</a>
+        <p class="footer-company-name">INSATGL2 &copy; 2020</p>
+    </div>
+    <div class="footer-center">
+        <p><span>si vous avez des questions veuillez contacter :</span></p>
+        <ul>
+            <li><a href="https://www.facebook.com/rami.zouari.7">Rami Zouari</a></li>
+            <li><a href="https://www.facebook.com/souheil.benslama">Souheil Ben Slama</a></li>
+            <li><a href="https://www.facebook.com/profile.php?id=100013679042167">Wissem Ben Daly</a></li>
+
+        </ul>
+    </div>
+    <div class="footer-right">
+
+        <p class="footer-about">
+
+            BOOK EXCHANGER est un site web *qui organise les echange de livres entre les utilisateurs.
+        </p>
+    </div>
+</footer>
+
+
+{% block javascripts %}
+
+
+    <script src="{{ asset('node_modules/jquery/dist/jquery.js') }}">
+    </script>
+    <script src="{{ asset('node_modules/popper.js/dist/popper.js') }}">
+    </script>
+    <script src="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
+    </script>
+    <script src="{{ asset('node_modules/mdbootstrap/js/mdb.js') }}">
+    </script>
+    <script src="{{ asset('node_modules/mdbootstrap/js/addons/datatables.min.js') }}">
+    </script>
+    <script src="{{ asset('node_modules/mdbootstrap/js/addons/datables-select.min.js') }}">
+    </script>
+{% endblock %}
+
+
+
+<<<<<<< HEAD
             </div>
            
         {% endblock %}
@@ -123,3 +246,7 @@
 {% endblock %}
     </body>     
     </html>
+=======
+</body>
+</html>
+>>>>>>> origin/souheil

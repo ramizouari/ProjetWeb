@@ -4,12 +4,17 @@
 
 {% block body %}
 
+<<<<<<< HEAD
     {{ parent() }}
 <!-- Default form login -->
 <form class="text-center border border-light p-5" method="post" style=" max-width: 70%;
 ;transform: translate(25%, 25%);">
 
    {% if error %}
+=======
+<form method="post">
+    {% if error %}
+>>>>>>> origin/souheil
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
       {% if app.user %}

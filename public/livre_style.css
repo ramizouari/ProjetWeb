@@ -4,10 +4,17 @@
     border-bottom: black;}
 .a{
     margin: 5px;}
-#b{
+#book_img{
     width:300px ;
     height:400px;
+    vertical-align:middle;
 }
+
+table{
+
+    width: 100%;
+}
+
 .b{
     width: 40%;
     height:400px;
@@ -19,5 +26,20 @@
     margin-top: 9px;  }
 
 .card{
+    width: 300px;
+    height: 400px;
+   margin-right: 20px;
+    margin-top: 10px;
+}
+
+
+.card div img {
     width: 200px;
-    height: 400px; }
+    height: 300px;
+    align-self: center;
+    margin-left: 25px;
+    margin-right: 25px;
+     }
+.card div
+
+
