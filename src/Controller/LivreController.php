@@ -40,20 +40,11 @@ class LivreController extends AbstractController
         //$exchangesRepo = $this->getDoctrine()->getRepository(Exchange::class);
         //$exchanges = $exchangesRepo->findBy(["bookId"=>$book->getId()]);
         //$exchangesNumber=count($exchanges);
-<<<<<<< HEAD
         $note=$evalRepo->getNoteOrZero($bookId,$this->getUser()->getId());
         $averageNote=0;//average note of all voting users
         $T=$evalRepo->getAverageNote($bookId);
         $averageNote=$T[0];
         $n=$T[1];
-=======
-        $note=0;
-        $n=count($evaluations);
-        foreach($evaluations as $eval)
-            $note+=$eval->getNote();
-        if($n) $note/=$n;
-        else $note=null;
->>>>>>> 9bfce1ec2ee1933eb1ab4d3a1d44d5f1b8902aff
         $ownedBookRepo=$this->getDoctrine()->getRepository(UserBook::class);
         $userRepo=$this->getDoctrine()->getRepository(User::class);
         $followedBookRepo=$this->getDoctrine()->getRepository(UserFollowedBook::class);
@@ -76,30 +67,19 @@ class LivreController extends AbstractController
                 $user->note=$eval->getNote();
             return $user;
         },$followedBookRepo->findBy(["bookId"=>$book->getId()]));
-<<<<<<< HEAD
-<<<<<<< HEAD
         $isOwned=$ownedBookRepo->findOneBy(["userId"=>$this->getUser()->getId()
         ,"bookId"=>$book->getId()])!=null;
         $isFollowed=$followedBookRepo->findOneBy
         (["userId"=>$this->getUser()->getId(),"bookId"=>$book->getId()])!=null;
+        $semilaires=$bookRepo->findBy(["category"=>$book->getCategory()]);
+        $tab=array_slice($semilaires,0,8);
         return $this->render('livre/index.html.twig', ["book" => $book,
         "averageNote"=>$averageNote, "exchangesNumber"=>"Not supported Yet" ,
         "votersNumber"=>$n, "users"=>$owners,"followers"=>$followers,
-        "isOwned"=>$isOwned,"isFollowed"=>$isFollowed,"note"=>$note]);
-=======
+        "isOwned"=>$isOwned,"isFollowed"=>$isFollowed,"note"=>$note,"semilaires"=>$tab]);
+
         return $this->render('livre/index.html.twig', ["book" => $book,"note"=>$note,
             "exchangesNumber"=>"Not supported Yet" , "users"=>$owners,"followers"=>$followers]);
->>>>>>> 9bfce1ec2ee1933eb1ab4d3a1d44d5f1b8902aff
-=======
-
-
-        $semilaires=$bookRepo->findBy(["category"=>$book->getCategory()]);
-        $tab=array_slice($semilaires,0,8);
-
-
-        return $this->render('livre/index.html.twig', ["book" => $book,"note"=>$note,
-            "exchangesNumber"=>"Not supported Yet" , "users"=>$owners,"followers"=>$followers,"semilaires"=>$tab]);
->>>>>>> origin/souheil
     }
 
     ///**
@@ -122,8 +102,6 @@ class LivreController extends AbstractController
     //    return $this->render("livre/liste.html.twig", ["users"=>$owners,"followers"=>$followers]) ;
 
     //}
-<<<<<<< HEAD
-
     /**
      * @Route("/livre/create",name="book_create")
      */
@@ -297,9 +275,3 @@ class LivreController extends AbstractController
         return new JsonResponse(true);
     }
 }
-
-
-
-=======
-}
->>>>>>> 9bfce1ec2ee1933eb1ab4d3a1d44d5f1b8902aff
