@@ -29,12 +29,12 @@
                 </div>
 
                 <div class="card-header " style="margin-bottom: 0px;padding-left: 0px;padding-right: 0px; align-content: center">
+
                     <h5 class="card-title text-center">{{  livre.title}}</h5>
 
                 </div>
             </div>
          </a>
-
         </div>
 
 
@@ -46,17 +46,19 @@
 
 <nav aria-label="Page navigation example " style=" position: relative; bottom:-1150px;
     left:-600px;">
+
         <ul class="pagination">
-
-
 
             <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page-1 })  }}">Previous</a></li>
 
             {% for i in 1 .. nbpages %}
-            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page":i}) }}"> {{ i }} </a></li>
+
+                <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page":i}) }}"> {{ i }} </a></li>
+
              {% endfor %}
 
             <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page+1 }) }}">Next</a></li>
+
         </ul>
 
 

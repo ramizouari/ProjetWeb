@@ -62,9 +62,8 @@ class LivreController extends AbstractController
             return $user;
         },$followedBookRepo->findBy(["bookId"=>$book->getId()]));
 
+
         $semilaires=$bookRepo->findBy(["category"=>$book->getCategory()]);
-
-
         $tab=array_slice($semilaires,0,8);
 
 
