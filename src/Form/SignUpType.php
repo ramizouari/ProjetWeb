@@ -27,8 +27,7 @@ class SignUpType extends AbstractType
             ->add('lastName',TextType::class)
             ->add("plainPassword",PasswordType::class)
             ->add("phoneNumber",TelType::class)
-            ->add('save', SubmitType::class, [
-                "attr"=>["class"=>"btn btn-primary"]])
+            ->add('save', SubmitType::class)
         ;
        
     }

@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LivreController!{% endblock %}
+{% block title %}{{book.title}}{% endblock %}
 
 {% block stylesheets %}
 
@@ -15,15 +15,64 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm col-md-3">
-                <div class="text-center">
-                  <img  id="b"  class="rounded img-responsive float-center img-thumbnail"
-         src="{{ extract(null) }}"
+                <div class="container">
+                  <img  id="b"  class="row rounded img-responsive float-center img-thumbnail"
+         src="{{ asset('book_photo/'~book.headshot) }}"
          alt=" image missing" style="vertical-align:middle">
+                    <div class="row">
+                        <button id="ownership" class="col-5 btn btn-primary btn-sm" role="button" 
+                        onclick="alterBookOwnership()"
+                        value=
+                        {% if isOwned %}
+                        "1"
+                        {% else %}
+                        "0"
+                        {% endif %}
+                        >
+                        <small id="smallOwnershipText">{% if isOwned %}
+                        Remove Book
+                        {% else %}
+                        Add Book
+                        {% endif %}</small>
+                        </button>
+                        <button id="following" class="col-5 btn btn-primary btn-sm" role="button" 
+                        onclick="alterBookFollowing()"
+                        value=
+                        {% if isFollowed %}
+                        "1"
+                        {% else %}
+                        "0"
+                        {% endif %}
+                        >
+                        <small id="smallFollowingText">{% if isFollowed %}
+                        Unfollow Book
+                        {% else %}
+                        Follow Book
+                        {% endif %}</small>
+                        </button>
+                    </div>
+                    <span id="stars_container" class="row score">
+                        <div class="score-wrap">
+                            <span class="stars-active" style="width:88%">
+                            {% for i in 1..10 %}
+                                <i id={{"star"~i}} onclick="noteBook({{i}})"
+                                 class="fa 
+                                 {% if i <= note %}
+                                 fa-star
+                                 {% else %}
+                                 fa-star-o
+                                 {% endif %}
+                                 " aria-hidden="true"></i>
+                            {% endfor %}
+                            </span>
+                        </div>
+                        <h5 id="thankingText" style="text-align: center;"></h5>
+                    </span>
                 </div>
             </div>
           
         <div class="col-sm">
-            <table  id="" class="table table-bordered" cellspacing="0" width="100%">
+            <table  id="bookTable" class="table table-bordered" cellspacing="0" width="100%">
 
             <tr size="20px">
                 <th>Titre: </th>
@@ -55,10 +104,10 @@
             </tr>
             <tr>
                 <th>Evaluation: </th>
-                <td> {% if note == null %}
+                <td> {% if averageNote == null %}
                     {{ "No note Given" }}
                     {% else %}
-                    {{ note }}
+                    {{ averageNote~" average based on "~votersNumber~" reviews" }}
                     {% endif %} </td>
             </tr>
 
@@ -116,7 +165,7 @@
             
         </div>
         <hr>
-        <div class="row">
+        <div class="row mb-3">
             <h2 class="col-sm col-md-3 text-center">Followers</h2>
             <div class="col-sm">
                 <table id="followerTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
@@ -164,18 +213,7 @@
         </div>
     </div>
     
-    <div class="liste_possesseurs float-left">
-    
-   
-
-
-
-
-
-
-<!-- testing -->
-
-
+<!--    <div class="liste_possesseurs float-left">
 <div>
 
     <div class="mbox">
@@ -252,7 +290,7 @@
 
 
     </div>
-
+-->
 
 
 
@@ -268,5 +306,94 @@
     $('#followerTable').DataTable();
     $('.dataTables_length').addClass('bs-select');
     });
+
+    function alterBookOwnership()
+    {
+       but=document.getElementById("ownership");
+        $.ajax({
+            type: "POST",
+            url: but.value==1?"{{ path('book_remove',{'bookId':book.id}) }}":
+            "{{ path('book_add',{'bookId':book.id}) }}",
+            dataType: "json",
+            success: function() 
+            {
+                but=document.getElementById("ownership");
+                text=document.getElementById("smallOwnershipText");
+                if(but.value==1)
+                    text.textContent="Add Book";
+                else
+                     text.textContent="Remove Book";
+                but.value=1-but.value;
+            }
+        });
+    }
+    function alterBookFollowing()
+    {
+       but=document.getElementById("following");
+        $.ajax({
+            type: "POST",
+            url: but.value==1?"{{ path('book_unfollow',{'bookId':book.id}) }}":
+            "{{ path('book_follow',{'bookId':book.id}) }}",
+            dataType: "json",
+            success: function() 
+            {
+                but=document.getElementById("following");
+                text=document.getElementById("smallFollowingText");
+                if(but.value==1)
+                    text.textContent="Follow Book";
+                else
+                     text.textContent="Unfollow Book";
+                but.value=1-but.value;
+            }
+        });
+        
+    }
+     function alterBookOwnership()
+    {
+       but=document.getElementById("ownership");
+        $.ajax({
+            type: "POST",
+            url: but.value==1?"{{ path('book_remove',{'bookId':book.id}) }}":
+            "{{ path('book_add',{'bookId':book.id}) }}",
+            dataType: "json",
+            success: function() 
+            {
+                but=document.getElementById("ownership");
+                text=document.getElementById("smallOwnershipText");
+                if(but.value==1)
+                    text.textContent="Add Book";
+                else
+                     text.textContent="Remove Book";
+                but.value=1-but.value;
+            }
+        });
+    }
+
+    function noteBook(note)
+    {
+       for(i=1;i<=note;i++)
+       {
+           star=document.getElementById("star"+i);
+           star.classList.remove("fa-star-o");
+           star.classList.add("fa-star");
+       }
+        for(i=note+1;i<=10;i++)
+       {
+           star=document.getElementById("star"+i);
+           star.classList.remove("fa-star");
+           star.classList.add("fa-star-o");
+       }
+       route = "{{ path('book_review', {'bookId':book.id ,'note': "1" }) }}";
+        route = route.replace(new RegExp('1$'), note);
+        $.ajax({
+            type: "POST",
+            url: route,
+            dataType: "json",
+            success: function() 
+            {
+                document.getElementById("thankingText").innerHTML="Thanks for reviewing!";
+            }
+        });
+    }
 </script>
 {% endblock %}

@@ -31,52 +31,11 @@ class WelcomeController extends AbstractController
     public function welcome(SessionInterface $session,Request $request)
     {
         $session->start();
-        $user = $session->get("user");
+        $user = $this->getUser();
         if($user)
-            return $this->redirectToRoute("success");
-
-        $signInForm= $this->createForm (SignInType::class,$user);
-        $signInForm->handleRequest($request);
-
-        $signUpForm= $this->createForm (SignUpType::class,$user);
-        $signUpForm->handleRequest($request);
-        if($signUpForm->isSubmitted() && $signUpForm->isValid())
-        {
-            $user =$signUpForm->getData();
-            $user->setPasswordHash($this->passwordEncoder->encodePassword
-            ($user,$user->getPlainPassword()));
-            $user->eraseCredentials();
-            $manager = $this->getDoctrine()->getManager();
-            $manager->persist($user);
-            try
-            {$manager->flush();
-            }
-            catch(ORMException $exc)
-            {
-                    dd($exc);
-            }
-            catch(UniqueConstraintViolationException $constraint)
-            {
-                return $res= $this->redirectToRoute("exists");
-            }
-        }
-        else  if($signInForm->isSubmitted())
-        {
-            $user =$signInForm->getData();
-            $plainPassword=$user->getPlainPassword();
-            $user->eraseCredentials();
-            $userRepo = $this->getDoctrine()->getRepository(User::class);
-           $user=$userRepo->findOneBy(["email"=>$user->getEmail()]);
-           if(!$user || !$this->passwordEncoder->isPasswordValid($user,$plainPassword))
-           {
-            return $res= $this->redirectToRoute("signin");
-           }
-           $user = $session->set("user",$user);
-            return $res= $this->redirectToRoute("welcome",["attempts"=>1]);
-        }
+            return $this->redirectToRoute("acc");
         $res= $this->render('welcome/welcome.html.twig', [
-            'controller_name' => 'WelcomeController','sign_up'=>$signUpForm->createView(),
-            "sign_in"=>$signInForm->createView()
+            'controller_name' => 'WelcomeController'
         ]);
 
         return $res;
@@ -111,7 +70,7 @@ class WelcomeController extends AbstractController
     {
         $user = $this->getUser();
         if($user)
-            return $this->redirectToRoute("success");
+            return $this->redirectToRoute("acc");
         $signUpForm= $this->createForm (SignUpType::class,$user);
         $signUpForm->handleRequest($request);
         if($signUpForm->isSubmitted() && $signUpForm->isValid())
@@ -125,7 +84,7 @@ class WelcomeController extends AbstractController
             try
             {
                 $manager->flush();
-                return $this->redirectToRoute("welcome");
+                return $this->redirectToRoute("acc");
             }
             catch(ORMException $exc)
             {
@@ -137,8 +96,9 @@ class WelcomeController extends AbstractController
                 $signUpForm->addError(new FormError("Username/Email already exists"));
             }
         }
+        $error=$signUpForm->getErrors(true);
         return $this->render("welcome/signup.html.twig",["sign_up"=>
-        $signUpForm->createView()]);
+        $signUpForm->createView(),"error"=>$error]);
     }
 
     /**
@@ -147,7 +107,7 @@ class WelcomeController extends AbstractController
     public function login(AuthenticationUtils $authenticationUtils): Response
     {
          if ($this->getUser()) {
-             return $this->redirectToRoute('success');
+             return $this->redirectToRoute('acc');
          }
 
         // get the login error if there is one
