@@ -109,8 +109,9 @@ public function echanges(Request $request)
     $i=0;
     foreach ($requesterechanges as $echange){
         $mesdemandes[$i]=["id"=>$echange->getId(),
-                          "respondedId"=>$rep2->findOneBy(["id" => $echange->getResponderId()])->getUsername(),
-                           "requesteBook"=>$rep1->findOneBy(["id"=>$echange->getRequestedBookId()])->getTitle(),
+            "requesteduser"=>$rep2->findOneBy(["id" => $echange->getResponderId()])->getUsername(),
+            "requestedbook"=>$rep1->findOneBy(["id"=>$echange->getRequestedBookId()])->getTitle(),
+            "availablebook"=>$rep1->findOneBy(["id"=>$echange->getRespondedBookId()])->getTitle()
                             ];
         $i++;
     }
