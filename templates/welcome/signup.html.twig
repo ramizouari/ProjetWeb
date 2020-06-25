@@ -4,43 +4,74 @@
 
 {% block body %}
 
+    {{ parent() }}
+<!-- Default form register -->
 
+{{ form_start(sign_up,{"attr":{"class":"text-center border border-light p-5","style":" max-width: 70%;
+;transform: translate(25%, 25%);"}}) }}
+{% if error is not empty %}
+        <div class="alert alert-danger">
+        {% for err in error %}
+        {{ err.message }}
+        {% endfor %}
+        </div>
+    {% endif %}  <p class="h4 mb-4">Sign up</p>
+  <div class="form-row mb-4">
+        <div class="col">
+            <!-- First name -->
+                {{ form_widget(sign_up.firstName,{"attr":{"class":"form-control","type":"text",
+                "placeholder":"First name"}}) }}
+        </div>
+        <div class="col">
+            <!-- Last name -->
+            {{ form_widget(sign_up.lastName,{"attr":{"class":"form-control","type":"text",
+                "placeholder":"Last name"}}) }}
+        </div>
+    </div>
+     <!-- E-mail -->
+     {{ form_widget(sign_up.email,{"attr":{"class":"form-control mb-4","type":"text",
+                "placeholder":"E-mail"}}) }}
+                <!-- Username -->
+     {{ form_widget(sign_up.username,{"attr":{"class":"form-control mb-4","type":"text",
+                "placeholder":"Username"}}) }}
 
-<style>
-    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
-    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
-</style>
-<fieldset>
-<legend>Fill the form</legend>
-{{ form_start(sign_up,{"attr":{"class":"form-group"}}) }}
-    {{ form_errors(sign_up) }}
+    <!-- Password -->
+    {{form_widget(sign_up.plainPassword,{"attr":{"class":"form-control","type":"password",
+                "placeholder":"Password","aria-describedby":"defaultRegisterFormPasswordHelpBlock"}})}}
+    <small id="defaultRegisterFormPasswordHelpBlock" class="form-text text-muted mb-4">
+        At least 8 characters, 1 uppercase character, 1 lowercase character and 1 digit
+    </small>
 
-    <div class="form-group">
-      {{form_label(sign_up.firstName,"First Name")}}
-    {{ form_widget(sign_up.firstName,{"attr":{"class":"form-control"}}) }}
+    <!-- Phone number -->
+        {{ form_widget(sign_up.phoneNumber,{"attr":{"class":"form-control",
+                "placeholder":"Phone number","aria-describedby":"defaultRegisterFormPhoneHelpBlock"}}) }}
+    <small id="defaultRegisterFormPhoneHelpBlock" class="form-text text-muted mb-4">
+        Optional
+    </small>
+
+    <!-- Newsletter -->
+    <div class="custom-control custom-checkbox">
+        <input type="checkbox" class="custom-control-input" id="defaultRegisterFormNewsletter">
+        <label class="custom-control-label" for="defaultRegisterFormNewsletter">Subscribe to our newsletter</label>
     </div>
-      <div class="form-group">
-      {{form_label(sign_up.lastName,"Last Name")}}
-    {{ form_widget(sign_up.lastName,{"attr":{"class":"form-control"}}) }}
-    </div>
-      <div class="form-group">
-      {{form_label(sign_up.username,"Username")}}
-    {{ form_widget(sign_up.username,{"attr":{"class":"form-control"}}) }}
-    </div>
-      <div class="form-group">
-      {{form_label(sign_up.email,"Email Address")}}
-    {{ form_widget(sign_up.email,{"attr":{"class":"form-control"}}) }}
-    </div>
-      <div class="form-group">
-      {{form_label(sign_up.plainPassword,"Password")}}
-    {{ form_widget(sign_up.plainPassword,{"attr":{"class":"form-control"}}) }}
-    </div>
-       <div class="form-group">
-      {{form_label(sign_up.phoneNumber,"Phone Number")}}
-    {{ form_widget(sign_up.phoneNumber,{"attr":{"class":"form-control"}}) }}
-    </div>
+
+    <!-- Sign up button -->
+    {{ form_widget(sign_up.save,{"label":"Sign Up",
+    "attr":{"class":"btn btn-info my-4 btn-block","type":"submit"}}) }}
+
+    <!-- Social register -->
+    <p>or sign up with:</p>
+
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
+
+    <hr>
+
+    <!-- Terms of service -->
+    <p>By clicking
+        <em>Sign up</em> you agree to our
+        <a href="" target="_blank">terms of service</a>
     {{form_end(sign_up)}}
-         <a href="{{ path('app_login') }}" class="small">Already have an Account? </a>
-
-</fieldset>
 {% endblock %}

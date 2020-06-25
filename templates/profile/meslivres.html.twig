@@ -1,7 +1,9 @@
 {% extends "profile/index.html.twig" %}
 
 
-
+{% block title %}
+My Books
+{% endblock %}
 
 {% block body %}
 
@@ -24,7 +26,9 @@
 
             <div style="width:250px" class="card float-left">
 
-                <div class="card-body"> <img style="width: 200px;height: 270px" class="card-img-top" src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+                <div class="card-body"> 
+                <img style="width: 200px;height: 270px" class="card-img-top" src="{{asset('book_photo/'~livre.headshot)}}" 
+                    alt="Card image cap">
 
                 </div>
 
@@ -44,20 +48,23 @@
 
 </div>
 
+
+
+
 <nav aria-label="Page navigation example " style=" position: relative; bottom:-1150px;
     left:-600px;">
 
         <ul class="pagination">
 
-            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page-1 })  }}">Previous</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url( route ,{"page": page-1 })  }}">Previous</a></li>
 
             {% for i in 1 .. nbpages %}
 
-                <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page":i}) }}"> {{ i }} </a></li>
+                <li class="page-item"><a class="page-link" href="{{ url( route,{"page":i}) }}"> {{ i }} </a></li>
 
              {% endfor %}
 
-            <li class="page-item"><a class="page-link" href="{{ url('meslivres',{"page": page+1 }) }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="{{ url( route,{"page": page+1 }) }}">Next</a></li>
 
         </ul>
 

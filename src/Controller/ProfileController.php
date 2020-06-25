@@ -7,6 +7,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
+use App\Entity\Exchange;
+use App\Entity\Book;
+use App\Entity\User;
 
 class ProfileController extends AbstractController
 {
@@ -55,7 +58,7 @@ class ProfileController extends AbstractController
         {      if(($page==$pagenumb)&&(($i)==($numb%12)))
                 {break;}
                 $pagetable[$i]=$meslivres[($page-1)*12+$i];}
-        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable, "user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page));
+        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable, "user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page,"route"=>"meslivres"));
 
     }
 
@@ -86,7 +89,7 @@ class ProfileController extends AbstractController
             {break;}
             $pagetable[$i]=$meslivres[($page-1)*12+$i];
         }
-        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable,"user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page));
+        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable,"user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page,"route"=>"livres_abonnements"));
     }
 
 
@@ -98,17 +101,17 @@ class ProfileController extends AbstractController
 
 public function echanges(Request $request)
 {
-    $rep=$this->getDoctrine()->getRepository("App:Exchange");
+    $rep=$this->getDoctrine()->getRepository(Exchange::class);
     $requesterechanges=$rep->findBy(["requesterId"=>$this->getUser()->getId()]);
     $mesdemandes=array();
-    $rep1=$this->getDoctrine()->getRepository("App:Book");
-    $rep2=$this->getDoctrine()->getRepository('App:User');
+    $rep1=$this->getDoctrine()->getRepository(Book::class);
+    $rep2=$this->getDoctrine()->getRepository(User::class);
     $i=0;
     foreach ($requesterechanges as $echange){
         $mesdemandes[$i]=["id"=>$echange->getId(),
-                          "requesteduser"=>$rep2->findOneBy(["id" => $echange->getResponderId()])->getUsername(),
-                           "requestedbook"=>$rep1->findOneBy(["id"=>$echange->getRequestedBookId()])->getTitle(),
-                            "availablebook"=>$rep1->findOneBy(["id"=>$echange->getRespondedBookId()])->getTitle()
+            "requesteduser"=>$rep2->findOneBy(["id" => $echange->getResponderId()])->getUsername(),
+            "requestedbook"=>$rep1->findOneBy(["id"=>$echange->getRequestedBookId()])->getTitle(),
+            "availablebook"=>$rep1->findOneBy(["id"=>$echange->getRespondedBookId()])->getTitle()
                             ];
         $i++;
     }

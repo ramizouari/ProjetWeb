@@ -4,44 +4,60 @@
 
 {% block body %}
 
-<form method="post">
-    {% if error %}
+    {{ parent() }}
+<!-- Default form login -->
+<form class="text-center border border-light p-5" method="post" style=" max-width: 70%;
+;transform: translate(25%, 25%);">
+
+   {% if error %}
         <div class="alert alert-danger">{{ error.messageKey|trans(error.messageData, 'security') }}</div>
     {% endif %}
-
-    {% if app.user %}
+      {% if app.user %}
         <div class="mb-3">
             You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
         </div>
     {% endif %}
+    <p class="h4 mb-4">Sign in</p>
 
-    <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
-    <label for="inputUsername">Username</label>
-    <input type="text" value="{{ last_username }}" name="username" id="inputUsername" class="form-control" required autofocus>
-    <label for="inputPassword">Password</label>
-    <input type="password" name="password" id="inputPassword" class="form-control" required>
+    <!-- Email -->
+    <input type="inputUsername" id="inputUsername" class="form-control mb-4" placeholder="Username"
+     value="{{ last_username }}" name="username">
 
+    <!-- Password -->
+    <input type="password" name="password" id="inputPassword" class="form-control mb-4" placeholder="Password" required>
     <input type="hidden" name="_csrf_token"
            value="{{ csrf_token('authenticate') }}"
     >
-
-    
-        {#
-        Already Uncommented 
-        Uncomment this section and add a remember_me option below your firewall to activate remember me functionality.
-        See https://symfony.com/doc/current/security/remember_me.html
-        #}
-
-        <div class="checkbox mb-3">
-            <label>
-                <input type="checkbox" name="_remember_me"> Remember me
-            </label>
+    <div class="d-flex justify-content-around">
+        <div>
+            <!-- Remember me -->
+            <div class="custom-control custom-checkbox">
+                <input type="checkbox" name="_remember_me" class="custom-control-input" 
+                id="defaultLoginFormRemember">
+                <label class="custom-control-label" for="defaultLoginFormRemember">Remember me</label>
+            </div>
         </div>
+        <div>
+            <!-- Forgot password -->
+            <a href="{{path('app_forgot_password_request')}}">Forgot password?</a>
+        </div>
+    </div>
 
-    <button class="btn btn-lg btn-primary" type="submit">
-        Sign in
-    </button>
+    <!-- Sign in button -->
+    <button class="btn btn-info btn-block my-4" type="submit">Sign in</button>
+
+    <!-- Register -->
+    <p>Not a member?
+        <a href="{{path('signup')}}">Register</a>
+    </p>
+
+    <!-- Social login -->
+    <p>TO do: or sign in with:</p>
+
+    <a href="#" class="mx-2" role="button"><i class="fab fa-facebook-f light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-twitter light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-linkedin-in light-blue-text"></i></a>
+    <a href="#" class="mx-2" role="button"><i class="fab fa-github light-blue-text"></i></a>
 
 </form>
-    <a href="{{ path('app_forgot_password_request') }}" class="small">Forgot Password?</a> <a href="{{ path('signup') }}" class="small">Sign Up </a>
 {% endblock %}

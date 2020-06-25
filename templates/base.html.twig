@@ -3,33 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <title>{% block title %}Welcome!{% endblock %}</title>
-
     <link rel="stylesheet" href="{{ asset('node_modules/datatables/media/css/jquery.dataTables.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/css/bootstrap.css') }}">
     <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
-    <link rel="stylesheet" href="{{ asset('base-footer.css')}}">
-    <!--  <link rel="stylesheet" href="{{ asset('node_modules/mdbootstrap/css/mdb.css') }}">-->
+    <link rel="stylesheet" href="{{ asset('base-footer.css') }}">
     <link rel="stylesheet"
           href="{{ asset('node_modules/mdbootstrap/addons/datatables.min.css') }}">
     <link rel="stylesheet"
           href="{{ asset('node_modules/mdbootstrap/css/addons/datatables-select.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ asset('footer.css') }}">
 
     {% block stylesheets %}
 
-
     {% endblock %}
 
-
 </head>
+
 <body style="min-height: 100%; height: 100%">
+
 <div style="margin-bottom:100px">
-    <nav class="navbar navbar-inverse navbar-expand-lg navbar-light fixed-top bg-light ">
+    <nav class="navbar navbar-inverse navbar-expand navbar-light fixed-top bg-light ">
         <div class="container-fluid">
             <div class="navbar-brand">
                 <a class="navbar-brand" href="#">Book Exchanger</a>
+
             </div>
-            <form class="form-inline">
-                <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+            <object data="{{ asset('book.svg') }}" width="50" height="50" type="image/svg+xml">
+            </object>
+            <form class="form-inline" action="{{ path('search') }}">
+                <input name="search" class="form-control mr-sm-2" type="search" placeholder="Search"
+                       aria-label="Search">
                 <button class="btn btn-outline-success my-2 my-sm-0" type="submit">Search</button>
             </form>
             <ul class="nav navbar-nav">
@@ -45,7 +49,7 @@
                             <i class="fa fa-user-circle fa-2x" aria-hidden="true"></i>
                         </button>
                     </a></li>
-                <li class="mr-lg-2"><a href="#">
+                <li class="mr-lg-2"><a href="{{ path('meslivres') }}">
                         <button class="btn btn-outline-primary">
 
                             <i class="fa fa-book fa-2x" aria-hidden="true"></i></button>
@@ -63,13 +67,8 @@
             </ul>
         </div>
     </nav>
-
-
-
-
-
-
 </div>
+
 
 <div id="page-container">
     <div id="conten-wrap">
@@ -82,13 +81,12 @@
 
     </div>
 </div>
-
 <footer class="footer-distributed">
     <div class="footer-left">
         <h2> book <span>exchanger</span></h2>
         <br>
         <a href="">report bug</a>
-        <p class="footer-company-name">INSATGL2 &copy; 2020</p>
+        <p class="footer-company-name">INSAT GL2 &copy; 2020</p>
     </div>
     <div class="footer-center">
         <p><span>si vous avez des questions veuillez contacter :</span></p>
@@ -107,11 +105,22 @@
         </p>
     </div>
 </footer>
+<!--  {% block footer %}
+  
+<footer class="page-footer font-small grey darken-1">
+  <div class="footer-copyright text-center py-3">© 2020 Copyright:
+    <a href=""> Book Exchanger</a>
+    <hr>
+   <object data="{{ asset('book.svg') }}" width="20" height="20" type="image/svg+xml">
+</object> Book Exchanger Icon is made by
+         <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+  </div>
 
-
+</footer>
+-->
+<!-- Footer -->
+{% endblock %}
 {% block javascripts %}
-
-
     <script src="{{ asset('node_modules/jquery/dist/jquery.js') }}">
     </script>
     <script src="{{ asset('node_modules/popper.js/dist/popper.js') }}">
@@ -122,11 +131,10 @@
     </script>
     <script src="{{ asset('node_modules/mdbootstrap/js/addons/datatables.min.js') }}">
     </script>
-    <script src="{{ asset('node_modules/mdbootstrap/js/addons/datables-select.min.js') }}">
+    <script src="{{ asset('node_modules/mdbootstrap/js/addons/datatables-select.min.js') }}">
+    </script>
+    <script src="{{ asset('node_modules/ajax/lib/ajax.js') }}">
     </script>
 {% endblock %}
-
-
-
 </body>
 </html>

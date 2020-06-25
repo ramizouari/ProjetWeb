@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Create Book{% endblock %}
+
+{% block body %}
+
+{{parent()}}
+{{ form_start(book_form,{"attr":{"class":"form-group"}}) }}
+<div class="alert alert-danger" role="alert">
+   {{ form_errors(book_form,{"attr":{"class":"alert alert-danger", 
+    "role": "alert"}}) }}
+</div>
+ 
+<fieldset>
+<legend>Fill the form</legend>
+  
+  <div class="form-group">
+    {{form_label(book_form.title,"Title")}}
+        {{ form_widget(book_form.title,{"attr":{"class":"form-control"}}) }}
+</div>
+  
+  <div class="form-group">
+      {{form_label(book_form.author,"Author")}}
+    {{ form_widget(book_form.author,{"attr":{"class":"form-control"}}) }}
+    </div>
+    <div class="form-group mb-2">
+         {{form_label(book_form.description,"Description")}}
+            {{ form_widget(book_form.description,{"attr":{"class":"form-control"}}) }}
+     </div> 
+     <div class="form-group mb-2">
+         {{form_label(book_form.category,"Category")}}
+            {{ form_widget(book_form.category,{"attr":{"class":"form-control"}}) }}
+     </div> 
+          <div class="form-group mb-2">
+         {{form_label(book_form.pagesNumber,"Number of Pages")}}
+            {{ form_widget(book_form.pagesNumber,{"attr":{"class":"form-control"}}) }}
+     </div> 
+          <div class="form-group mb-2">
+         {{form_label(book_form.year,"Year")}}
+            {{ form_widget(book_form.year,{"attr":{"class":"form-control"}}) }}
+     </div> 
+          <a class="small">Forgot Password?</a> <a href="{{ path('signup') }}" class="small">Sign Up </a>
+
+    </fieldset>
+    {{form_end(book_form)}}
+{% endblock %}

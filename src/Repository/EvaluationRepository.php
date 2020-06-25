@@ -47,4 +47,29 @@ class EvaluationRepository extends ServiceEntityRepository
         ;
     }
     */
+    public function getAverageNote($bookId)
+    {
+        $evaluations=$this->findBy(["bookId"=>$bookId]);
+        //$exchangesRepo = $this->getDoctrine()->getRepository(Exchange::class);
+        //$exchanges = $exchangesRepo->findBy(["bookId"=>$book->getId()]);
+        //$exchangesNumber=count($exchanges);
+        $averageNote=0;
+        $n=count($evaluations);
+        foreach($evaluations as $eval)
+            $averageNote+=$eval->getNote();
+        if($n) {
+            $averageNote/=$n;
+            $averageNote=round($averageNote,3);
+        }
+        else $averageNote=null;
+        return array($averageNote,$n);
+    }
+
+    public function getNoteOrZero($bookId,$userId)
+    {
+        $eval=$this->findOneBy(["bookId"=>$bookId,"userId"=>$userId]);
+        if(!$eval)
+            return 0;
+        else return $eval->getNote();
+    }
 }

@@ -6,7 +6,9 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\HttpFoundation\File\File;
 
 /**
  * @ORM\Entity(repositoryClass=UserRepository::class)
@@ -64,9 +66,14 @@ class User implements UserInterface
     */
     private $roles = [];
 
+    
     private $plainPassword;
-    private $photo;
     private $rememberSession;
+
+  //  /**
+  //   * @ORM\Column(type="string", length=255, nullable=true)
+  //   */
+    private $photoPath;
 
     public function getId(): ?int
     {
@@ -287,6 +294,25 @@ class User implements UserInterface
     public function setPhoneNumber($phoneNumber)
     {
         $this->phoneNumber = $phoneNumber;
+
+        return $this;
+    }
+
+    public function getHeadShot()
+    {
+            $path="user_photo/";
+      return file_exists($path.$this->id)?$this->id:0;
+      
+    }
+
+    public function getPhotoPath(): ?string
+    {
+        return $this->photoPath;
+    }
+
+    public function setPhotoPath(?string $photoPath): self
+    {
+        $this->photoPath = $photoPath;
 
         return $this;
     }

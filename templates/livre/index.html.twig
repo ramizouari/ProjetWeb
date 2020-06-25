@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello LivreController!{% endblock %}
+{% block title %}{{book.title}}{% endblock %}
 
 {% block stylesheets %}
 
@@ -14,112 +14,160 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-sm col-md-3">
-                <div class="text-center">
-                    <img  id="b"  class="rounded img-responsive float-center img-thumbnail"
-                          src="{{ extract(null) }}"
-                          alt=" image missing" style="vertical-align:middle; height:400px">
+                <div class="container">
+                  <img  id="b"  class="row rounded img-responsive float-center img-thumbnail"
+         src="{{ asset('book_photo/'~book.headshot) }}"
+         alt=" image missing" style="vertical-align:middle">
+                    <div class="row">
+                        <button id="ownership" class="col-5 mr-1 btn btn-primary btn-sm" role="button" 
+                        onclick="alterBookOwnership()"
+                        value=
+                        {% if isOwned %}
+                        "1"
+                        {% else %}
+                        "0"
+                        {% endif %}
+                        >
+                        <small id="smallOwnershipText">{% if isOwned %}
+                        Remove Book
+                        {% else %}
+                        Add Book
+                        {% endif %}</small>
+                        </button>
+                        <button id="following" class="col-5 ml-1 btn btn-primary btn-sm" role="button" 
+                        onclick="alterBookFollowing()"
+                        value=
+                        {% if isFollowed %}
+                        "1"
+                        {% else %}
+                        "0"
+                        {% endif %}
+                        >
+                        <small id="smallFollowingText">{% if isFollowed %}
+                        Unfollow Book
+                        {% else %}
+                        Follow Book
+                        {% endif %}</small>
+                        </button>
+                    </div>
+                    <span id="stars_container" class="row score">
+                        <div class="score-wrap">
+                            <span class="stars-active" style="width:88%">
+                            {% for i in 1..10 %}
+                                <i id={{"star"~i}} onclick="noteBook({{i}})"
+                                 class="fa 
+                                 {% if i <= note %}
+                                 fa-star
+                                 {% else %}
+                                 fa-star-o
+                                 {% endif %}
+                                 " aria-hidden="true"></i>
+                            {% endfor %}
+                            </span>
+                        </div>
+                        <h5 id="thankingText" style="text-align: center;"></h5>
+                    </span>
                 </div>
             </div>
+          
+        <div class="col-sm">
+            <table  id="bookTable" class="table table-bordered" cellspacing="0" width="100%">
 
-            <div class="col-sm">
-                <table  id="" class="table table-bordered" cellspacing="0" width="100%">
+            <tr size="20px">
+                <th>Titre: </th>
+                <td> {{ book.title }}</td>
+            </tr>
+            <tr>
+                <th>Description:   </th>
+                <td> <h1 id="test" > souheil </h1></td>
+            </tr>
+            <tr>
+                <th>Auteur: </th>
+                <td> {{ book.author}} </td>
+            </tr>
+            <tr>
+                <th>Année: </th>
+                <td> {{ book.year}} </td>
+            </tr>
+            <tr>
+                <th>Catégorie </th>
+                <td> {{ book.category}} </td>
+            </tr>
+            <tr>
+                <th>Nombre des échanges: </th>
+                <td> {{ exchangesNumber}} </td>
+            </tr>
+            <tr>
+                <th>Nombre des pages: </th>
+                <td> {{ book.pagesNumber }} </td>
+            </tr>
+            <tr>
+                <th>Evaluation: </th>
+                <td> {% if averageNote == null %}
+                    {{ "No note Given" }}
+                    {% else %}
+                    {{ averageNote~" average based on "~votersNumber~" reviews" }}
+                    {% endif %} </td>
+            </tr>
 
-                    <tr size="20px">
-                        <th>Titre: </th>
-                        <td> {{ book.title }}</td>
-                    </tr>
-                    <tr>
-                        <th>Description: </th>
-                        <td> {{ book.description }}</td>
-                    </tr>
-                    <tr>
-                        <th>Auteur: </th>
-                        <td> {{ book.author}} </td>
-                    </tr>
-                    <tr>
-                        <th>Année: </th>
-                        <td> {{ book.year}} </td>
-                    </tr>
-                    <tr>
-                        <th>Catégorie </th>
-                        <td> {{ book.category}} </td>
-                    </tr>
-                    <tr>
-                        <th>Nombre des échanges: </th>
-                        <td> {{ exchangesNumber}} </td>
-                    </tr>
-                    <tr>
-                        <th>Nombre des pages: </th>
-                        <td> {{ book.pagesNumber }} </td>
-                    </tr>
-                    <tr>
-                        <th>Evaluation: </th>
-                        <td> {% if note == null %}
-                                {{ "No note Given" }}
-                            {% else %}
-                                {{ note }}
-                            {% endif %} </td>
-                    </tr>
-
-                </table>
+        </table>
             </div>
         </div>
         <hr>
         <div class="row">
-            <h2 class="col-sm col-md-3 text-center">Owners</h2>
+             <h2 class="col-sm col-md-3 text-center">Owners</h2>
             <div class="col-sm">
                 <table id="userTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
-                    <thead>
-                    <tr>
-                        <th class="th-sm">Nom
+                <thead>
+                <tr>
+                <th class="th-sm">Nom
 
-                        </th>
-                        <th class="th-sm">Prenom
+                </th>
+                <th class="th-sm">Prenom
 
-                        </th>
-                        <th class="th-sm">Addresse
+                </th>
+                <th class="th-sm">Addresse
 
-                        </th>
-                        <th class="th-sm">Note
+                </th>
+                <th class="th-sm">Note
 
-                        </th>
-                        <th class="th-sm">Action
+                </th>
+                <th class="th-sm">Action
 
-                        </th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    {% if users is not empty %}
+                </th>
+                </tr>
+                </thead>
+                <tbody>
+                {% if users is not empty %}
 
                         {% for cat in users %}
                             <tr>
-                                <td>{{ cat.firstName }}</td>
-                                <td>{{ cat.lastName }} <i class="i-pc"></i></td>
-                                <td>{{ cat.email }}</td>
-                                <td>{{ cat.note }} </td>
-                                <td class="tar">
-
-                                    <button type="button" class="btn btn-danger btn-sm m-0">Demander Echange</button>
-                                    <button type="button" class="btn btn-outline-primary btn-sm m-0">Void Profil</button>
-                                </td>
+                            <td>{{ cat.firstName }}</td>
+                            <td>{{ cat.lastName }} <i class="i-pc"></i></td>
+                            <td>{{ cat.email }}</td>
+                            <td>{{ cat.note }} </td>
+                            <td class="tar">
+                            <button type="button" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+                            <button type="button" class="btn btn-outline-info btn-sm m-0">Void Profil</button>
+                            </td>
                             </tr>
 
                         {% endfor %}
                     {% else %}
                         <tr>
-                            <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
+                        <td  colspan="4">Ce livre n'est rattaché à aucune catégorie.</td>
                         </tr>
                     {% endif %}
-                    </tbody>
+                </tbody>
                 </table>
             </div>
-
+            
         </div>
         <hr>
-        <div class="row">
+        <div class="row mb-3">
             <h2 class="col-sm col-md-3 text-center">Followers</h2>
             <div class="col-sm">
-                <table id="followerTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <table id="followerTable" class="table table-striped table-bordered  table-sm" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th class="th-sm">Nom
@@ -165,54 +213,126 @@
             </div>
         </div>
     </div>
+    
+
 
 
     <h2>Similar books</h2>
-
     <div class="liste_possesseurs float-left">
-
-        <div class="card-deck">
-
-            {% for book in semilaires %}
-
-            <a href="#" class="movie float-left" >
-                <div class="card" >
-
-                    <div class="card-body"> <img class="card-img-top "src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
+        {% for book in semilaires %}
+                <div class="card float-left" >
+                    <a href="#" class="movie text-decoration-none" >
+                        <div class="card-body"> <img class="card-img-top "src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
                     </div>
-                    <div class="card-header">
+                        <div class="card-header" style="">
                         <h5 class="card-title text-center">{{ book.getTitle }}</h5>
                     </div>
-                </div>
-
-            </a>
+                    </a>
         </div>
         {% endfor %}
 </div>
 
 
-
-    </div>
-
-
-    </div>
-
-
-    </div>
-
-
-
 {% endblock %}
 {% block javascripts %}
-    {{ parent() }}
-    <script >
-        $(document).ready(function () {
-            $('#userTable').DataTable();
-            $('.dataTables_length').addClass('bs-select');
+{{ parent() }}
+<script >
+    $(document).ready(function () {
+    $('#userTable').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+    });
+     $(document).ready(function () {
+    $('#followerTable').DataTable();
+    $('.dataTables_length').addClass('bs-select');
+    });
+
+    function alterBookOwnership()
+    {
+       but=document.getElementById("ownership");
+        $.ajax({
+            type: "POST",
+            url: but.value==1?"{{ path('book_remove',{'bookId':book.id}) }}":
+            "{{ path('book_add',{'bookId':book.id}) }}",
+            dataType: "json",
+            success: function() 
+            {
+                but=document.getElementById("ownership");
+                text=document.getElementById("smallOwnershipText");
+                if(but.value==1)
+                    text.textContent="Add Book";
+                else
+                     text.textContent="Remove Book";
+                but.value=1-but.value;
+            }
         });
-        $(document).ready(function () {
-            $('#followerTable').DataTable();
-            $('.dataTables_length').addClass('bs-select');
+    }
+    function alterBookFollowing()
+    {
+       but=document.getElementById("following");
+        $.ajax({
+            type: "POST",
+            url: but.value==1?"{{ path('book_unfollow',{'bookId':book.id}) }}":
+            "{{ path('book_follow',{'bookId':book.id}) }}",
+            dataType: "json",
+            success: function() 
+            {
+                but=document.getElementById("following");
+                text=document.getElementById("smallFollowingText");
+                if(but.value==1)
+                    text.textContent="Follow Book";
+                else
+                     text.textContent="Unfollow Book";
+                but.value=1-but.value;
+            }
         });
-    </script>
+        
+    }
+     function alterBookOwnership()
+    {
+       but=document.getElementById("ownership");
+        $.ajax({
+            type: "POST",
+            url: but.value==1?"{{ path('book_remove',{'bookId':book.id}) }}":
+            "{{ path('book_add',{'bookId':book.id}) }}",
+            dataType: "json",
+            success: function() 
+            {
+                but=document.getElementById("ownership");
+                text=document.getElementById("smallOwnershipText");
+                if(but.value==1)
+                    text.textContent="Add Book";
+                else
+                     text.textContent="Remove Book";
+                but.value=1-but.value;
+            }
+        });
+    }
+
+    function noteBook(note)
+    {
+       for(i=1;i<=note;i++)
+       {
+           star=document.getElementById("star"+i);
+           star.classList.remove("fa-star-o");
+           star.classList.add("fa-star");
+       }
+        for(i=note+1;i<=10;i++)
+       {
+           star=document.getElementById("star"+i);
+           star.classList.remove("fa-star");
+           star.classList.add("fa-star-o");
+       }
+       route = "{{ path('book_review', {'bookId':book.id ,'note': "1" }) }}";
+        route = route.replace(new RegExp('1$'), note);
+        $.ajax({
+            type: "POST",
+            url: route,
+            dataType: "json",
+            success: function() 
+            {
+                document.getElementById("thankingText").innerHTML="Thanks for reviewing!";
+            }
+        });
+    }
+</script>
 {% endblock %}

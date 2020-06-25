@@ -2,17 +2,23 @@
 <html  lang="fr">
     <head>
         <meta charset="UTF-8">
-        <link href="node_modules/bootstrap/dist/css/bootstrap.css" rel="stylesheet">
-        <link rel="stylesheet" href="{{ asset('base-footer.css')}}">
-        
+
+
         <title>{% block title %}Welcome!{% endblock %}</title>
+
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css" >
+        <link rel="stylesheet" href="{{ asset('base-footer.css')}}">
+
+        <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
+        <link rel="stylesheet" href="{{ asset('base_syle.css') }}">
+        <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
+        <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
+
         {% block stylesheets %}
 
-            <link rel="stylesheet" href="{{ asset("node_modules/bootstrap/dist/css/bootstrap.css") }}">
-            <link rel="stylesheet" href="{{ asset('node_modules/bootstrap/dist/js/bootstrap.js') }}">
-            <link rel="stylesheet" href="{{ asset('node_modules/font-awesome/css/font-awesome.css') }}">
 
         {% endblock %}
+
     </head>
     <body>
 
