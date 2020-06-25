@@ -78,8 +78,8 @@
                 <td> {{ book.title }}</td>
             </tr>
             <tr>
-                <th>Description: </th>
-                <td> {{ book.description }}</td>
+                <th>Description:   </th>
+                <td> <h1 id="test" > souheil </h1></td>
             </tr>
             <tr>
                 <th>Auteur: </th>
@@ -147,8 +147,8 @@
                             <td>{{ cat.email }}</td>
                             <td>{{ cat.note }} </td>
                             <td class="tar">
-                            <button type="button" class="btn btn-indigo btn-sm m-0">Demande Echange</button>
-                            <button type="button" class="btn btn-indigo btn-sm m-0">Void Profil</button>
+                            <button type="button" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+                            <button type="button" class="btn btn-outline-info btn-sm m-0">Void Profil</button>
                             </td>
                             </tr>
 
@@ -167,7 +167,7 @@
         <div class="row mb-3">
             <h2 class="col-sm col-md-3 text-center">Followers</h2>
             <div class="col-sm">
-                <table id="followerTable" class="table table-striped table-bordered table-sm" cellspacing="0" width="100%">
+                <table id="followerTable" class="table table-striped table-bordered  table-sm" cellspacing="0" width="100%">
                     <thead>
                     <tr>
                         <th class="th-sm">Nom
@@ -219,52 +219,19 @@
 
     <h2>Similar books</h2>
     <div class="liste_possesseurs float-left">
-        <!-- testing -->
-
-        <div>
-
-            <div class="mbox">
-                <div class="hd pda bdb"><strong> similaire books </strong> <a
-                            href="https://feta.egybest.rocks/movies/latest-bluray-2020-2019" class="left">more »</a></div>
-                <div class="h_scroll">
-                    <span class="_scroll left i-ar-l"></span> <span class="_scroll right hide i-ar-r"></span>
-                    <div class="contents movies_small">
-
-                        <span class="_scroll right i-ar-r"></span>
-
+        {% for book in semilaires %}
+                <div class="card float-left" >
+                    <a href="#" class="movie text-decoration-none" >
+                        <div class="card-body"> <img class="card-img-top "src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
                     </div>
-                </div>
-            </div>
-        </div>
-
-        <div class="card-deck">
-
-            {% for book in semilaires %}
-
-            <a href="#" class="movie float-left" >
-                <div class="card" >
-
-                    <div class="card-body"> <img class="card-img-top "src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
-                    </div>
-                    <div class="card-header">
+                        <div class="card-header" style="">
                         <h5 class="card-title text-center">{{ book.getTitle }}</h5>
                     </div>
-                </div>
-
-            </a>
+                    </a>
         </div>
         {% endfor %}
 </div>
 
-
-
-    </div>
-
-
-    </div>
-
-
-    </div>
 
 {% endblock %}
 {% block javascripts %}

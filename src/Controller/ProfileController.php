@@ -58,7 +58,7 @@ class ProfileController extends AbstractController
         {      if(($page==$pagenumb)&&(($i)==($numb%12)))
                 {break;}
                 $pagetable[$i]=$meslivres[($page-1)*12+$i];}
-        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable, "user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page));
+        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable, "user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page,"route"=>"meslivres"));
 
     }
 
@@ -89,7 +89,7 @@ class ProfileController extends AbstractController
             {break;}
             $pagetable[$i]=$meslivres[($page-1)*12+$i];
         }
-        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable,"user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page));
+        return $this->render("profile/meslivres.html.twig",array("meslivres"=>$pagetable,"user"=>$this->getUser(),"nbpages"=>$pagenumb,"page"=>$page,"route"=>"livres_abonnements"));
     }
 
 
