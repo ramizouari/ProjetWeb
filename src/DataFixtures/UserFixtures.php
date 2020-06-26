@@ -29,6 +29,10 @@ class UserFixtures extends Fixture
             $lastName=$faker->lastName();
             $domain=$faker->freeEmailDomain();
             $user=new User();
+            if($i>1)
+                $user->setRoles(["ROLE_USER"]);
+            else 
+                $user->setRoles(["ROLE_USER","ROLE_ADMIN"]);
             $user->setLastName($lastName);
             $user->setFirstName($firstName);
             $user->setEmail(strtolower($firstName).'.'.strtolower($lastName)."@".$domain);
