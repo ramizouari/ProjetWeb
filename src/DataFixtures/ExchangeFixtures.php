@@ -3,16 +3,17 @@
 namespace App\DataFixtures;
 
 use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\Exchange;
 use Doctrine\Persistence\ObjectManager;
 use Faker\Factory;
 
-class Exchange extends Fixture
+class ExchangeFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
         // $product = new Product();
         // $manager->persist($product);
-
+        
         $faker=Factory::create();
         for($i=0;$i<200;$i++)
         {

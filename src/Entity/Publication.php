@@ -17,12 +17,12 @@ class Publication
      */
     private $id;
  /**
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      * @ORM\JoinColumn(nullable=false)
      */
     private $userId;
      /**
-  * @ORM\Column(type="int")
+  * @ORM\Column(type="integer")
      * @ORM\JoinColumn(nullable=false)
      */
     private $bookId;
@@ -73,10 +73,22 @@ class Publication
         return $this->userId;
     }
 
-    public function setUserId(?User $userId): self
+    public function setUserId($userId): self
     {
         $this->userId = $userId;
 
         return $this;
+    }
+
+    public function setBookId($bookId): self
+    {
+        $this->bookId = $bookId;
+
+        return $this;
+    }
+
+    public function getBookId()
+    {
+        return $this->bookId;
     }
 }

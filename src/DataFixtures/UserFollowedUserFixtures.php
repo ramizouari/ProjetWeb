@@ -1,14 +1,11 @@
 <?php
 
 namespace App\DataFixtures;
-
+use App\Entity\UserFollowedUser;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use App\Entity\UserFollowedBook;
-use Doctrine\Common\DataFixtures\DependentFixtureInterface;
-use Faker\Factory;
 
-class UserFollowedBookFixtures extends Fixture implements DependentFixtureInterface
+class UserFollowedUserFixtures extends Fixture
 {
     public function load(ObjectManager $manager)
     {
@@ -19,19 +16,17 @@ class UserFollowedBookFixtures extends Fixture implements DependentFixtureInterf
         shuffle($T);
         for($i=0;$i<5000;$i++)
         {
-            $userFollowedBook=new UserFollowedBook();
-            $userFollowedBook->setUserId($T[$i][0]);
-            $userFollowedBook->setBookId($T[$i][1]);
-            $manager->persist($userFollowedBook);
+            $userFollowedUser=new UserFollowedUser();
+            $userFollowedUser->setFollowerId($T[$i][0]);
+            $userFollowedUser->setFollowedId($T[$i][1]);
+            $manager->persist($userFollowedUser);
         }
         $manager->flush();
     }
-
     public function getDependencies()
     {
         return array(
             UserFixtures::class,
-            BookFixtures::class
         );
     }
 }
