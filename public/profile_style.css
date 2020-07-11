@@ -2,3 +2,7 @@
     font-size:30px;
     color: #0cbf0c
        }
+
+.item:hover{
+    color: red;
+}
