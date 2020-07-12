@@ -94,21 +94,15 @@ class Exchange
     }
 
     public function setRequestDate(\DateTimeInterface $requestDate): self
-    {
-        $this->requestDate = $requestDate;
-
-        return $this;
-    }
+    {$this->requestDate = $requestDate;
+        return $this;}
 
     public function getRequestedBookId(): ?int
-    {
-        return $this->requestedBookId;
-    }
+    {return $this->requestedBookId;}
 
     public function setRequestedBookId(int $requestedBookId): self
     {
         $this->requestedBookId = $requestedBookId;
-
         return $this;
     }
 

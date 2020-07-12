@@ -154,7 +154,12 @@
                             <td>{{ cat.email }}</td>
                             <td>{{ cat.note }} </td>
                             <td class="tar">
-                            <button type="button" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+
+
+                                <a href="{{ path('exchange_create',{"requestedId":cat.id,"requestedName":cat.firstName,"requestedBookId":book.id,"requestedBookName":book.title}) }}">
+                            <button type="button" id="mybb" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+                                </a>
+
                             <button type="button" class="btn btn-outline-info btn-sm m-0">Void Profil</button>
                             </td>
                             </tr>
@@ -204,7 +209,10 @@
 
                                 <td class="tar">
 
-                                    <button type="button" class="btn btn-danger btn-sm m-0">Demander Echange</button>
+                                    <a href="{{ path('exchange_create',{"requestedId":cat.id,"requestedName":cat.firstName,"requestedBookId":book.id,"requestedBookName":book.title}) }}">
+                                        <button type="button" id="mybb" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+                                    </a>
+
                                     <button type="button" class="btn btn-outline-primary btn-sm m-0">Void Profil</button>
                                 </td>
                             </tr>
@@ -244,6 +252,9 @@
 {% block javascripts %}
 {{ parent() }}
 <script >
+
+
+
     $(document).ready(function () {
     $('#userTable').DataTable();
     $('.dataTables_length').addClass('bs-select');
@@ -294,6 +305,8 @@
         });
         
     }
+
+
      function alterBookOwnership()
     {
        but=document.getElementById("ownership");

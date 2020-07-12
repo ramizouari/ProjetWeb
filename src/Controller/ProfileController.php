@@ -19,19 +19,15 @@ class ProfileController extends AbstractController
     public function index(Request $request)
     {
 
-        //$user=$request->request->get('user');
+        try {
+            $rep = $this->getDoctrine()->getRepository("App:Publication");
+            $rep2 = $this->getDoctrine()->getRepository("App:User");
+            $pubs = $rep->findBy(array("userId" => $rep2->find($this->getUser()->getId())), array("date" => "ASC"));
+        }
+         catch (Exception $e ){
+    }
 
-       /* try {
-            $rep=$this->getDoctrine()->getRepository("App:Publication");
-            $rep2=$this->getDoctrine()->getRepository("App:User");
-            $pubs=$rep->findBy(array("proprietaire"=>$rep2->find($id)),array("proprietaire"=>"ASC"));
-
-        }*/
-        //catch (Exception $e ){
-
-            $pubs=null ;
-    //}
-        return$this->render("profile/journale.html.twig",["pubs"=>$pubs,"user"=>$this->getUser()]);  }
+        return $this->render("profile/journale.html.twig",["pubs"=>$pubs,"user"=>$this->getUser()]);  }
 
 
     /**
