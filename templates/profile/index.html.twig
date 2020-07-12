@@ -15,7 +15,6 @@
 
 
     <div class="float-left" >
-
         <div class="wrapper bg-dark  " style="width: 300px ;height:1230px;">
             <!-- Sidebar -->
             <nav id="sidebar">
@@ -26,7 +25,7 @@
                 <ul class="list-unstyled components text-light" >
                     <br>
                     <br>
-                    <p>this your profile {{ user.getUserName() }} </p>
+                    <p>this your profile  </p>
                     <br>
 
                     <img class="img-thumbnail img-circle" height="100%" preserveAspectRatio="xMidYMid slice" width="100%"
@@ -67,16 +66,44 @@
                         <a href="{{ url('meslivres') }}" class="item">My Books</a>
                     </li>
 
+
+                    {%  if user.hasRoles("admin")  %}
+
+                    <li>
+                        <a href="{{ url('book_create') }}" class="item"> Create a Book</a>
+                    </li>
+
+                        <li>
+                            <a href="{{ url('meslivres') }}" class="item"> delete a Book</a>
+                        </li>
+
+                        <li>
+                            <a href="{{ url('meslivres') }}" class="item"> users liste </a>
+                        </li>
+
+
+                    {% endif %}
+
                     <li>
                         <a href="#" class="item">Settings</a> </li>
                     <li>
                         <a href="#" class="item">About</a>
                     </li>
+
+                    {%  if user.hasRoles("admin")  %}
+
+                        <li>
+                            <h3> you have the power of administrator </h3>
+                            <p> Remember ! <br> great power comes with great responsibility  </p>
+                        </li>
+
+                    {% endif %}
+
+
                 </ul>
             </nav>
 
         </div>
-
     </div>
 
 

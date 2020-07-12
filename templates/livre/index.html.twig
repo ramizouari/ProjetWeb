@@ -6,6 +6,13 @@
 
     <link rel="stylesheet" href="{{ asset('livre_style.css') }}">
 
+    <style>
+
+        th{
+            background-color: rgba(230,161,133,0.69);
+        }
+
+    </style>
 
 {% endblock %}
 
@@ -73,8 +80,8 @@
         <div class="col-sm">
             <table  id="bookTable" class="table table-bordered" cellspacing="0" width="100%">
 
-            <tr size="20px">
-                <th>Titre: </th>
+            <tr >
+                <th width="250px">Titre: </th>
                 <td> {{ book.title }}</td>
             </tr>
             <tr>
@@ -147,7 +154,12 @@
                             <td>{{ cat.email }}</td>
                             <td>{{ cat.note }} </td>
                             <td class="tar">
-                            <button type="button" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+
+
+                                <a href="{{ path('exchange_create',{"requestedId":cat.id,"requestedName":cat.firstName,"requestedBookId":book.id,"requestedBookName":book.title}) }}">
+                            <button type="button" id="mybb" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+                                </a>
+
                             <button type="button" class="btn btn-outline-info btn-sm m-0">Void Profil</button>
                             </td>
                             </tr>
@@ -197,7 +209,10 @@
 
                                 <td class="tar">
 
-                                    <button type="button" class="btn btn-danger btn-sm m-0">Demander Echange</button>
+                                    <a href="{{ path('exchange_create',{"requestedId":cat.id,"requestedName":cat.firstName,"requestedBookId":book.id,"requestedBookName":book.title}) }}">
+                                        <button type="button" id="mybb" class="btn btn-outline-danger btn-sm m-0">Demande Echange</button>
+                                    </a>
+
                                     <button type="button" class="btn btn-outline-primary btn-sm m-0">Void Profil</button>
                                 </td>
                             </tr>
@@ -218,17 +233,17 @@
 
 
     <h2>Similar books</h2>
-    <div class="liste_possesseurs float-left">
+
+    <div id="conteneur" style="display:flex;flex-direction: row; flex-wrap: wrap ; justify-content: space-aroundsy">
         {% for book in semilaires %}
                 <div class="card float-left" >
                     <a href="#" class="movie text-decoration-none" >
-                        <div class="card-body"> <img class="card-img-top "src="//pic.egybest.net/i/RHNhSUNlY21URW1wWUVtTGNFY2FteGptdm1qbUlhdmM.jpg" alt="Card image cap">
-                    </div>
+                        <div class="card-body"> <img class="card-img-top "src="{{asset('book_photo/'~book.headshot)}}"> </div>
                         <div class="card-header" style="">
-                        <h5 class="card-title text-center">{{ book.getTitle }}</h5>
-                    </div>
-                    </a>
-        </div>
+                        <h5 class="card-title text-center" style="font-size: 100%">{{ book.getTitle }}</h5>
+                     </div>
+                     </a>
+                 </div>
         {% endfor %}
 </div>
 
@@ -237,6 +252,9 @@
 {% block javascripts %}
 {{ parent() }}
 <script >
+
+
+
     $(document).ready(function () {
     $('#userTable').DataTable();
     $('.dataTables_length').addClass('bs-select');
@@ -287,6 +305,8 @@
         });
         
     }
+
+
      function alterBookOwnership()
     {
        but=document.getElementById("ownership");

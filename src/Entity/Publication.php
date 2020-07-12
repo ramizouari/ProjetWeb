@@ -17,12 +17,12 @@ class Publication
      */
     private $id;
  /**
-     * @ORM\Column(type="int")
+     * @ORM\Column(type="integer")
      * @ORM\JoinColumn(nullable=false)
      */
     private $userId;
      /**
-  * @ORM\Column(type="int")
+  * @ORM\Column(type="integer")
      * @ORM\JoinColumn(nullable=false)
      */
     private $bookId;

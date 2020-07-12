@@ -6,6 +6,7 @@ use App\Repository\UserRepository;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
+use phpDocumentor\Reflection\Types\Boolean;
 use Symfony\Component\Filesystem\Exception\FileNotFoundException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\HttpFoundation\File\File;
@@ -105,9 +106,19 @@ class User implements UserInterface
         $roles = $this->roles;
         // guarantee every user at least has ROLE_USER
         $roles[] = 'ROLE_USER';
-
         return array_unique($roles);
     }
+
+
+    public function hasRoles($ch): bool
+    {
+        $roles =  $this->getRoles() ;
+
+       return in_array($ch,$roles) ;
+
+    }
+
+
 
     public function setRoles(array $roles): self
     {

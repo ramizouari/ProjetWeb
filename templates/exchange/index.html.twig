@@ -1,0 +1,72 @@
+{% extends 'profile/index.html.twig' %}
+
+{% block title %}Hello your making  an Exchange {% endblock %}
+
+{% block body %}
+
+    <table>
+
+        <tr>
+            <h1> Exchange </h1></tr>
+        <br>
+
+    </table>
+
+        <form action="{{ path('exchange_validation') }}" method="get" >
+
+
+                <label for="rbook"> requested book </label> <br>
+
+                <input  id="rbook"  name="requestedbook" type="text" value="{{ requestedBook }}">
+                <br>
+
+            <label for="rbookId"> requested book id </label> <br>
+
+            <input  id="rbookId"  name="requestedbookId" type="text" value="{{ echange.requestedBookId }}">
+            <br>
+
+
+            <label for="person"> requested person </label> <br>
+
+               <input  id="person"  name="requestedperson" type="text" value="{{ requestedname }}">
+
+            <br>
+
+            <label for="personId"> requested person Id </label> <br>
+
+            <input  id="personId"  name="requestedpersonId" type="text" value="{{ echange.responderId }}">
+
+
+            <br>
+                <label for="date "> propose a  return date </label>
+                <br>
+                <input  name="date" id="date" type="date">  </tr>
+            <br>
+            <tr>
+                <br>
+
+                <label for="book "> propose a  book  </label>
+                <br>
+                <select name="book" id="bb">
+
+                    {% for a in disponibles %}
+
+                    <option value="{{ a.id }}"> {{  a.title }}  </option>
+
+                    {% endfor %}
+
+                </select>
+
+                 </tr>
+
+            <tr>
+                <input type="submit" value="validate">
+            </tr>
+
+        </form>
+
+
+
+
+
+{% endblock %}

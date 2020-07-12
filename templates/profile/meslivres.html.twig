@@ -9,9 +9,10 @@ My Books
 
 {{ parent() }}
 
-<div>
 
-<div class="float-lg-none">
+
+    <div id="conteneur" style="display:flex;flex-direction: row; flex-wrap: wrap ; justify-content: space-around">
+
     {% for livre in meslivres   %}
 
          {%   if meslivres == null %}
@@ -20,7 +21,7 @@ My Books
 
         {% endif %}
 
-        <div class="float-left " style="margin-left:10px">
+        <div class="" style="margin-left:10px">
 
         <a href="{{ path('livre',{'bookId':livre.id}) }}">
 
@@ -32,9 +33,9 @@ My Books
 
                 </div>
 
-                <div class="card-header " style="margin-bottom: 0px;padding-left: 0px;padding-right: 0px; align-content: center">
+                <div class="card-header " style="margin-bottom: 0px;padding-left: 0px;padding-right: 0px; align-content: normal">
 
-                    <h5 class="card-title text-center">{{  livre.title}}</h5>
+                    <h5 class="card-title text-center" style="font-size: 100% ; font-family: Helvetica, Arial, sans-serif ;color:orange">{{  livre.title}}</h5>
 
                 </div>
             </div>
@@ -46,13 +47,13 @@ My Books
 
 {% endfor %}
 
-</div>
+    </div>
 
 
 
 
-<nav aria-label="Page navigation example " style=" position: relative; bottom:-1150px;
-    left:-600px;">
+<nav aria-label="Page navigation example " style=" position:relative;
+    left:50%; clear: left">
 
         <ul class="pagination">
 
